@@ -1,0 +1,29 @@
+<html>
+    <head>
+         <script type = "text/javascript">
+            function divideByThree() {
+                var count = 0;
+                var k = document.getElementById("number").value;
+                do {
+                    if (k%3==0) {
+                    k /= 3;
+                    } else if ((k+1)%3==0) {
+                        k++;
+                    } else if ((k-1)%3==0) {
+                        k--;
+                    }
+                    count++;
+                } while (k>1);
+                alert("The iteration took " + count + " steps to reach " + k);
+            }
+        </script>
+    </head>
+        <body>
+            <div id = "setNumber">
+               Set number: <input id = "number" type = "number" />
+            </div>
+            <div id = "triggerIteration">
+                <button type = "button" onclick="divideByThree()">Go!</button>
+            </div>
+        </body>
+</html>
