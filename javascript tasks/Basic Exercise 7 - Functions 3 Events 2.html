@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<script type = "text/javascript">
+			var n, a, j;
+			
+			var inputName = document.getElementById("inputName").innerHTML;
+			var inputAge = document.getElementById("inputAge").innerHTML;
+			var inputJob = document.getElementById("inputJob").innerHTML;
+			
+			function make(name,age,job) {
+				var it = {};
+				it.name = name;
+				it.age = age;
+				it.job = job;
+				return it;
+			}
+			
+			function read(n, a, j) {
+				var person = make(n,a,j);
+				console.log(person.name + ", " + person.age + ", " + person.occupation);
+			}
+			
+			var inputNewAge = document.getElementById('inputNewAge');
+			
+			function editAge(newAge) {
+				person.age = newAge;
+				alert("Age is now " + person.age);
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<section>
+				<div id = "txtbox">
+					Name: <input id = "inputName" type = "text" />
+					Age: <input id = "inputAge" type = "number" />
+					Occupation: <input id = "inputJob" type = "text" />
+				</div>
+				<div id = "read">
+					<button type = "button" onclick="read(inputName, inputAge, inputJob)">Read data</button>
+				</div>
+			</section>
+			<div id = "edit">
+				Age: <input id  = "inputNewAge" type = "number" />
+				<button type = "button" onclick="editAge(inputNewAge)">Edit age</button>
+			</div>
+		</form>
+	</body>
+</html>
