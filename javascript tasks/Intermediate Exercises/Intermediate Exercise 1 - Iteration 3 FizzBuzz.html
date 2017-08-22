@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script type = "text/javascript">
+            function fizzBuzz() {
+                var countlength = document.getElementById("inputCount").value;
+                var threeText = document.getElementById("inputThreeText").value;
+                var fiveText = document.getElementById("inputFiveText").value;
+                for (var i=1; i<=countlength; i++) {
+                    if (i%3==0) {
+                        document.write(threeText);
+                    }
+                    if (i%5==0) {
+                        document.write(fiveText);
+                    }
+                    if (i%3!=0 && i%5!=0) {
+                        document.write(i);
+                    }
+                    document.write("\n");
+                }
+            }
+        </script>
+    </head>
+        <body>
+            <form>
+                <section>
+                    <div id = "details">
+                        Count to: <input id = "inputCount" type = "number" />
+                        Say when divisible by 3: <input id = "inputThreeText" type = "text" />
+                        Say when divisible by 5: <input id = "inputFiveText" type = "text" />
+                    </div>
+                </section>
+                <div id = "button">
+                    <button type = "button" onclick="fizzBuzz()">FIZZBUZZ</button>
+                </div>
+            </form>
+        </body>
+</html>

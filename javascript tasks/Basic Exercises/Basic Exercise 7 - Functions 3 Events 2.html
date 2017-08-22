@@ -1,12 +1,6 @@
 <html>
 	<head>
 		<script type = "text/javascript">
-			var n, a, j;
-			
-			var inputName = document.getElementById("inputName").innerHTML;
-			var inputAge = document.getElementById("inputAge").innerHTML;
-			var inputJob = document.getElementById("inputJob").innerHTML;
-			
 			function make(name,age,job) {
 				var it = {};
 				it.name = name;
@@ -14,15 +8,19 @@
 				it.job = job;
 				return it;
 			}
-			
-			function read(n, a, j) {
-				var person = make(n,a,j);
-				console.log(person.name + ", " + person.age + ", " + person.occupation);
+
+			var person;
+
+			function read() {
+				personName = document.getElementById("inputName").value;
+				personAge = document.getElementById("inputAge").value;
+				personJob = document.getElementById("inputJob").value;
+				person = make(personName,personAge,personJob);
+				console.log(person.name + ", " + person.age + ", " + person.job);
 			}
 			
-			var inputNewAge = document.getElementById('inputNewAge');
-			
-			function editAge(newAge) {
+			function editAge() {
+				var newAge = document.getElementById('inputNewAge').value;
 				person.age = newAge;
 				alert("Age is now " + person.age);
 			}
@@ -37,12 +35,12 @@
 					Occupation: <input id = "inputJob" type = "text" />
 				</div>
 				<div id = "read">
-					<button type = "button" onclick="read(inputName, inputAge, inputJob)">Read data</button>
+					<button type = "button" onclick="read()">Read data</button>
 				</div>
 			</section>
 			<div id = "edit">
 				Age: <input id  = "inputNewAge" type = "number" />
-				<button type = "button" onclick="editAge(inputNewAge)">Edit age</button>
+				<button type = "button" onclick="editAge()">Edit age</button>
 			</div>
 		</form>
 	</body>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script type = "text/javascript">
+            function make(name,age,job) {
+				var it = {};
+				it.name = name;
+				it.age = age;
+				it.job = job;
+				return it;
+			}
+            var elliot = make("Elliott",37,"wizard");
+
+            function age2040(person) {
+                if (+person.age>=20 && +person.age<=40) {
+                    alert(person.name + " is between 20 and 40 years old")
+                } else {
+                    alert(person.name + " is either too old or too young")
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+                <section>
+                    <div id = "button">
+                        <button type = "button" onclick="age2040(elliot)">Is age is between 20 and 40</button>
+                    </div>
+                </section>
+        </form>
+    </body>
+</html>
