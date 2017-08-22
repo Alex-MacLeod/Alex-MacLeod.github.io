@@ -9,55 +9,28 @@
                 request.send();
                 
                 request.onload = function() {
-                var requestData = request.response;
-                document.getElementByID("squadName").innerHTML = requestData["squadName"];
+                    var requestData = request.response;
+                    
+                    var title = document.createElement("h2");
+                    title.textContent = requestData["squadName"];
+                    document.getElementsByTagName("body")[0].appendChild(title);
+
+                    var introText = document.createElement("p");
+                        if (requestData["active"]===true) {
+                            introText.textContent = "Since " + requestData["formed"] + ", these superheroes have tirelessly upheld " +
+                            "justice in " + requestData["homeTown"] + " from their base in " + requestData["secretBase"] + ".";
+                            document.getElementsByTagName("body")[0].appendChild(introText);
+                        }
+
+                    for (name in requestData["members"]) {
+                        var memberTitle = document.createElement("h3");
+                        memberTitle.textContent = name;
+                        document.getElementsByTagName("body")[0].appendChild(memberTitle);
+                    }
                 }
                 
         </script>
     </head>
     <body>
-        <section id = "introduction">
-            <div id = "title">
-                <h1 id = "squadName"></h1>
-            </div>
-            <div id = "introText">
-                Home Town: <p id = "homeTown"></p>
-                Year founded: <p id = "formed"></p>
-                Base: <p id = "secretBase"></p>
-                Active?: <p id = "active"></p>
-            </div>
-        </section>
-        <section id = "members">
-            <div id = "molman">  
-                <div id = "molmanName">
-                    <h3 id = "name1"></h1>
-                </div>
-                <div id = "molmanDetails">
-                    Age: <p id = "molAge"></p>
-                    Real Name: <p id = "molSecretIdentity"></p>
-                    Powers: <p id = "molPowers"></p>
-                </div>
-            </div>
-            <div id = "madup">  
-                <div id = "madupName">
-                    <h3 id = "name2"></h1>
-                </div>
-                <div id = "madupDetails">
-                    Age: <p id = "madAge"></p>
-                    Real Name: <p id = "madSecretIdentity"></p>
-                    Powers: <p id = "madPowers"></p>
-                </div>
-            </div>
-            <div id = "etfla">  
-                <div id = "etflaName">
-                    <h3 id = "name3"></h1>
-                </div>
-                <div id = "etflaDetails">
-                    Age: <p id = "etflaAge"></p>
-                    Real Name: <p id = "etflaSecretIdentity"></p>
-                    Powers: <p id = "etflaPowers"></p>
-                </div>
-            </div>
-        </section>
     </body>
 </html>
