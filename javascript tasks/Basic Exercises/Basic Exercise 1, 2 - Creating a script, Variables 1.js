@@ -1,6 +1,6 @@
-var text
-text = "Hello World"
+var text;
+text = "Hello World";
 
-document.write(text)
-alert(text)
-console.log(text)
+document.write(text);
+alert(text);
+console.log(text);
