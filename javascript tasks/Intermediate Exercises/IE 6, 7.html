@@ -1,37 +1,103 @@
 <html>
-    <head>
-        <script src="Intermediate Exercise 6, 7 - Garage, Admin Interface.js"></script>
-    </head>
-    <body>
+
+<head>
+    <script src="Intermediate Exercise 6, 7 - Garage, Admin Interface.js"></script>
+    <style></style>
+</head>
+
+<body>
+    <div>
+        <h1>Garage</h1>
+        <hr>
+    </div>
+    <div>
+        <section id="createCar">
+            <div>
+                <h3>Create new car: </h3>
+                <hr>
+            </div>
+            <form>
+                <div>
+                    <label>Car make: </label>
+                    <select id="createMake" required>
+                            <option value = "">Choose car make</option>
+                            <option value = "audi">Audi</option>
+                            <option value = "citroen">Citroen</option>
+                            <option value = "ford">Ford</option>
+                            <option value = "jaguar">Jaguar</option>
+                            <option value = "kia">Kia</option>
+                            <option value = "nissan">Nissan</option>
+                            <option value = "peugeot">Peugeot</option>
+                            <option value = "subaru">Subaru</option>
+                            <option value = "volswagen">Volkswagen</option>
+                        </select>
+                </div>
+                <div>
+                    Colour: <input id="createColour" placeholder="Enter car colour" type="color" required/> Registration
+                    Number: <input id="createRegNo" placeholder="Enter Registration number" type="text" required/>
+                </div>
+                <div>
+                    <label>Fuel type</label>
+                    <select id="createFuelType" required>
+                            <option value = "">Choose fuel type</option>
+                            <option value = "petrol">Petrol</option>
+                            <option value = "diesel">Diesel</option>
+                            <option value = "electric">Electric</option>
+                        </select>
+                </div>
+                <div>
+                    Any faults?: <input id="createFaulty" onclick="enableNumFaults()" type="checkbox" />
+                    <p id="createNumFaults"></p>
+                </div>
+                <div>
+                    <button type="button" onclick="createVehicle()">Submit car details</button>
+                </div>
+            </form>
+        </section>
+        <section id="checkInOut">
+            <div>
+                <hr>
+                <h3>Check In/Out Your Car: </h3>
+                <hr>
+            </div>
+            <div>
+                <input id="checkIn" placeholder="Enter Registration number" type="text" />
+                <button type="button" onclick="checkIn()">Check in car</button>
+            </div>
+            <div>
+                <input id="checkOut" placeholder="Enter Registration number" type="text" />
+                <button type="button" onclick="checkOut()">Check out car</button>
+            </div>
+    </div>
+    <section id="outputG">
         <div>
-            <h1>Garage</h1>
             <hr>
         </div>
-            <section>
-                <div>
-                    <h3>Create new car: </h3>
-                    <hr>
-                </div>
-                <div>
-                    Make: <input id = "createMake" type = "text"/>
-                    Model: <input id = "createModel" type = "text"/>
-                </div>
-                <div>
-                    Registration Number: <input id = "createRegNo" type = "text"/>
-                    Value: <input id = "createValue" type = "number"/>
-                </div>
-                <div>
-                    <label>Fuel type: </label>
-                    Petrol <input id = "createFuelPet" type = "radio"/>
-                    Diesel <input id = "createFuelDie" type = "radio"/>
-                </div>
-                <div>
-                    Known faults?: <input "createFaulty" type = "checkbox"/>
-                </div>
-            </section>
+        <div>
+            <button type="button" onclick="outputGarage()">Output Garage contents</button>
+            <p id="outputGarage"></p>
+        </div>
+    </section>
+    <section id="calcB">
         <div>
             <hr>
-            <p id="createCL"><button type = "button" onclick="enableCommandLine()">Enable Command Line Interface</button></p>
+            <h3>Calculate Bill: </h3>
+            <hr>
         </div>
-    </body>
+        <div>
+            <input id="calcBill" placeholder="Enter Registration number" type="text" />
+            <button type="button" onclick="calcBill()">Calculate bill</button>
+            <p id="printBill"></p>
+        </div>
+    </section>
+    <div>
+        <hr>
+        <p id="createCL"><button type="button" onclick="enableCommandLine()">Enable Command Line Interface</button></p>
+        <p id="createCB"></p>
+    </div>
+    <div>
+        <p id="outputComms"></p>
+    </div>
+</body>
+
 </html>

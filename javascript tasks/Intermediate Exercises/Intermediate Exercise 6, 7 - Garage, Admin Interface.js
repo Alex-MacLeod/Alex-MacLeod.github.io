@@ -1,43 +1,133 @@
-//use.strict;
-
-class Vehicle {
-    constructor(make, model, regNo, fuelType, value, faults) {
-        this.make = make;
-        this.model = model;
-        this.regNo = regNo;
-        this.fuelType = fuelType;
-        this.value = value;
-        this.faults = faults;
-    }
-}
+"use.strict";
 
 let garage = [];
 
+let onRoad = [];
+
+function carMaker(make, regNo, colour, fuelType, faults) {
+    let car = {};
+    car.make = make;
+    car.regNo = regNo;
+    car.colour = colour
+    car.fuelType = fuelType;
+    car.faults = faults;
+    return car;
+}
+
 function checkIn() {
-    
+    let checkInRegNo = document.getElementById("checkIn").value;
+    if (checkInRegNo === "") {
+        alert("Error: invalid registration number");
+    } else {
+        garage.push(onRoad.find(x => x.regNo === checkInRegNo));
+
+        let roadIndex = onRoad.findIndex(x => x.regNo === checkInRegNo)
+        onRoad.splice(roadIndex, 1);
+    }
 }
 
 function checkOut() {
-    
+    let checkOutRegNo = document.getElementById("checkOut").value;
+    if (checkOutRegNo === "") {
+        alert("Error: invalid registration number");
+    } else {
+        onRoad.push(garage.find(y => y.regNo === checkOutRegNo));
+
+        let garageIndex = garage.findIndex(y => y.regNo === checkOutRegNo)
+        garage.splice(garageIndex, 1);
+    }
 }
 
 function outputGarage() {
-    garage.forEach(a => a);
+    let txt = "";
+    txt += "<table border='1'>"
+    for (car in garage) {
+        for (z in car) {
+            txt += "<tr><td>" + car.z + "</td></tr>" //TODO: make table creation work;
+        }
+    }
+    txt += "</table>"
+    document.getElementById("outputGarage").innerHTML = txt;
 }
 
-function calcBill(carID) {
-    
+function calcBill() {
+    let calcBillRegNo = document.getElementById("calcBill").value;
+    let base = 50;
+    let billCar;
+
+    if (calcBillRegNo === "") {
+        alert("Error: invalid registration number");
+    } else {
+        billCar = garage.find(y => y.regNo === calcBillRegNo);
+
+    }
+
+    let bill = "The bill for repairing " + billCar.regNo + " amounts to ";
+    bill += billCar.faults * base + " GBP";
+    document.getElementById("printBill").innerHTML = bill;
 }
 
-function createCar() {
-    
+function createVehicle() {
+    let m = document.getElementById("createMake");
+    let f = document.getElementById("createFuelType");
+
+    let cMake = m.options[m.selectedIndex].value;
+    let cRegNo = document.getElementById("createRegNo").value;
+    let cColour = document.getElementById("createColour").value;
+    let cFuelType = f.options[f.selectedIndex].value;
+    let cFaults = document.getElementById("createFaultNo").value;
+
+    if (cMake === "") {
+        alert("Error: invalid car make");
+    } else if (cRegNo === "") {
+        alert("Error: invalid registration number");
+    } else if (cFuelType === "") {
+        alert("Error: invalid fuel type");
+    } else {
+        let car = carMaker(cMake, cRegNo, cColour, cFuelType, cFaults);
+        onRoad.push(car);
+    }
 }
 
-function editCar(carID) {
-
+function enableNumFaults() {
+    let faulty = document.getElementById("createFaulty").checked;
+    if (faulty) {
+        let faults = "<input id = \"createFaultNo\" placeholder = \"Enter number of faults\" type = \"number\" />";
+        document.getElementById("createNumFaults").innerHTML = faults;
+    }
 }
 
 function enableCommandLine() {
-    let cL = "<input id = \"commandLine\" placeholder = \"Input commands here\" type = \"text\" />";
-    document.getElementById("createCL").innerHTML = cL;
+    let commLine = "<input id = \"commandLine\" placeholder = \"Input commands here\" type = \"text\" />";
+    let commSubmit = "<button type=\"button\" onclick=\"command()\">Submit</button>";
+    document.getElementById("createCL").innerHTML = commLine;
+    document.getElementById("createCB").innerHTML = commSubmit;
+}
+
+function command() {
+    let commandInput = document.getElementById("commandLine").value.split(" ");
+    let output;
+    switch (commandInput[0]) {
+        default: output = `Did not recognise command ${commandInput[0]}. You can use the \"help\" command to find the list of commands available`;
+        break;
+        case "help":
+                output = "List of commands: calculate, checkIn, checkOut, create, help, output";
+            break;
+        case "calculate":
+                //TODO: implement calcBill function
+                break;
+        case "checkIn":
+                //TODO: implement checkIn function
+                break;
+        case "checkOut":
+                //TODO: implement checkIn function
+                break;
+        case "create":
+                //TODO: implement createCar function
+                break;
+        case "output":
+                //TODO: implement outputgarage function
+                break;
     }
+    document.getElementById("outputComms").innerHTML = output;
+}
