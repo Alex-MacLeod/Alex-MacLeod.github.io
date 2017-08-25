@@ -44,13 +44,6 @@ function start(list) {
     document.getElementById("startButton").innerHTML = "";
 }
 
-function mistake() {
-    draw();
-    if (mistakes === 7) {
-        lose();
-    }
-}
-
 function draw() {
     switch (true) {
         case (mistakes === 1):
@@ -87,6 +80,13 @@ function win() {
 function lose() {
     document.getElementById("winLoseMessage").innerHTML = "You lost!";
     document.getElementById("playAgain").innerHTML = playAgain;
+}
+
+function mistake() {
+    draw();
+    if (mistakes === 7) {
+        lose();
+    }
 }
 
 function checkLetter() {

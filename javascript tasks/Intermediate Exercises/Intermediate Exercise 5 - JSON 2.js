@@ -48,6 +48,6 @@ request.onload = function() {
         selected.forEach((b) => b.forEach((c) => txt += "<tr><td>" + c + "</td></tr>"));
         txt += "</table>";        
         document.getElementById("tbl").innerHTML = txt;
-    };
+    }
     //TODO: get function to work
-}
+};

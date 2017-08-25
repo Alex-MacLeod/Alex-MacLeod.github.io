@@ -41,4 +41,4 @@ request.onload = function() {
         document.getElementsByTagName("body")[0].appendChild(powersTitle);
         document.getElementsByTagName("body")[0].appendChild(powers);
     }
-}
+};
