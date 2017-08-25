@@ -20,68 +20,28 @@ request.send();
 request.onload = function () {
     const requestData = request.responseText;
     wordList = requestData.split("\n");
-}
+};
 
 function chooseWordFrom(list) {
     if (list.length > 0) {
         let random = Math.floor(Math.random() * list.length);
         let randWord = list[random];
         let hangWord = randWord.toUpperCase();
-        console.log("Word is " + hangWord);
+        //console.log("Word is " + hangWord);
         return hangWord;
     } else {
-        alert("Error: words not in array");
+        alert("Error: words not in list");
     }
 }
 
 function start(list) {
     word = chooseWordFrom(list);
-    for (let i = 0; i < word.length; i++) {
+    word = word.substring(0,word.length-1); //added this line after work since it started adding mysterious
+    for (let i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
         letters[i] = "_";
         document.getElementById("letters").innerHTML += letters[i] + " ";
     }
     document.getElementById("startButton").innerHTML = "";
-}
-
-function checkLetter() {
-    let gl = document.getElementById("guessLetter");
-    let guessedLetter = gl.options[gl.selectedIndex].value.toUpperCase();
-
-    if (word.includes(guessedLetter)) {
-        let index = word.indexOf(guessedLetter);
-        for (let k = index; k < word.length; k++) {
-            if (word.charAt(k) === guessedLetter) {
-                letters[k] = guessedLetter;
-            }
-        }
-        document.getElementById("letters").innerHTML = "";
-        for (let j = 0; j < letters.length; j++) {
-            document.getElementById("letters").innerHTML += letters[j] + " ";
-        }
-    } else {
-        document.getElementById("mistakeLetters").innerHTML += guessedLetter + " ";
-        mistakes++
-        mistake();
-    }
-
-    let stringLetters = "";
-    for (let s = 0; s < letters.length; s++) {
-        stringLetters += letters[s];
-    }
-    if (stringLetters === word) {
-        win();
-    }
-}
-
-function checkWord(w) {
-    let guessedWord = document.getElementById("guessWord").value;
-
-    if (word === guessedWord) {
-        win();
-    } else {
-        mistakes++
-        mistake();
-    }
 }
 
 function mistake() {
@@ -127,6 +87,47 @@ function win() {
 function lose() {
     document.getElementById("winLoseMessage").innerHTML = "You lost!";
     document.getElementById("playAgain").innerHTML = playAgain;
+}
+
+function checkLetter() {
+    let gl = document.getElementById("guessLetter");
+    let guessedLetter = gl.options[gl.selectedIndex].value.toUpperCase();
+
+    if (word.includes(guessedLetter)) {
+        let index = word.indexOf(guessedLetter);
+        for (let k = index; k < word.length; k++) {
+            if (word.charAt(k) === guessedLetter) {
+                letters[k] = guessedLetter;
+            }
+        }
+        document.getElementById("letters").innerHTML = "";
+        for (let j = 0; j < letters.length; j++) {
+            document.getElementById("letters").innerHTML += letters[j] + " ";
+        }
+    } else {
+        document.getElementById("mistakeLetters").innerHTML += guessedLetter + " ";
+        mistakes++;
+        mistake();
+    }
+
+    let stringLetters = "";
+    for (let s = 0; s < letters.length; s++) {
+        stringLetters += letters[s];
+    }
+    if (stringLetters === word) {
+        win();
+    }
+}
+
+function checkWord(w) {
+    let guessedWord = document.getElementById("guessWord").value;
+
+    if (word === guessedWord) {
+        win();
+    } else {
+        mistakes++;
+        mistake();
+    }
 }
 
 function reset() {

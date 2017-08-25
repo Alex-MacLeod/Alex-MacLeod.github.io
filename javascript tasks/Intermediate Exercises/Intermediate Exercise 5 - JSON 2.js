@@ -16,7 +16,7 @@ request.onload = function() {
     
     sortKing += "<select>";
     sortKing += " <option id = \"defaultK\" onchange=\"print(this.value)\">Please select a king</option>";
-    for (x in requestData) {
+    for (let x in requestData) {
         sortKing += `<option value = \"${requestData[x].nm}\">` + requestData[x].nm;
     }
     sortKing += "</select>";
@@ -24,7 +24,7 @@ request.onload = function() {
 
     sortHouse += "<select>";
     sortHouse += " <option id = \"defaultH\" onchange=\"print(this.value)\">Please select a house</option>";
-    for (y in requestData) {
+    for (let y in requestData) {
         sortHouse += `<option value = \"${requestData[y].hse}\">` + requestData[y].hse;
     }
     sortKing += "</select>";
@@ -33,7 +33,7 @@ request.onload = function() {
     
     sortDates += "<select>";
     sortDates += " <option id = \"defaultD\" onchange=\"print(this.value)\">Please select some dates</option>";
-    for (z in requestData) {
+    for (let z in requestData) {
         sortDates += `<option value = \"${requestData[z].yrs}\">` + requestData[z].yrs;
     }
     sortDates += "</select>";
@@ -44,10 +44,10 @@ request.onload = function() {
     function print(selection) {
         var selected = requestData.find(a => a.includes(selection));
         
-        txt += "<table border='1'>"
-        selected.forEach(b => b.forEach(c => txt += "<tr><td>" + c + "</td></tr>"));
-        txt += "</table>"        
+        txt += "<table border='1'>";
+        selected.forEach((b) => b.forEach((c) => txt += "<tr><td>" + c + "</td></tr>"));
+        txt += "</table>";        
         document.getElementById("tbl").innerHTML = txt;
-    }
+    };
     //TODO: get function to work
 }

@@ -9,15 +9,15 @@ function make(name,age,job) {
 var person;
 
 function read() {
-	personName = document.getElementById("inputName").value;
-	personAge = document.getElementById("inputAge").value;
-	personJob = document.getElementById("inputJob").value;
+	let personName = document.getElementById("inputName").value;
+	let personAge = document.getElementById("inputAge").value;
+	let personJob = document.getElementById("inputJob").value;
 	person = make(personName,personAge,personJob);
 	console.log(person.name + ", " + person.age + ", " + person.job);
 }
 			
 function editAge() {
-	var newAge = document.getElementById('inputNewAge').value;
+	var newAge = document.getElementById("inputNewAge").value;
 	person.age = newAge;
 	alert("Age is now " + person.age);
 }
