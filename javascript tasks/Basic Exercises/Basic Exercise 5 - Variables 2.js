@@ -5,7 +5,7 @@ function maker(name, age, occupation) {
 	it.occupation = occupation;
 	return it;
 }
-var person = maker("Bob", 40, "builder")
+var person = maker("Bob", 40, "builder");
 document.write(person.name + ", "),
 document.write(person.age + ", "),
 document.write(person.occupation);

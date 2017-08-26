@@ -22,7 +22,7 @@ request.onload = function() {
     let x;
     for (x in requestData["members"]) {
         var memberTitle = document.createElement("h3");
-        var age = document.createElement("p");``
+        var age = document.createElement("p");
         var secretIdentity = document.createElement("p");
         var powersTitle = document.createElement("h4");
         var powers = document.createElement("p");
@@ -33,7 +33,7 @@ request.onload = function() {
         powersTitle.textContent = "Powers:";
         
         powers.textContent = "";
-        requestData.members[x].powers.forEach(y => powers.textContent += y + ", ");
+        requestData.members[x].powers.forEach((y) => powers.textContent += y + ", ");
         
         document.getElementsByTagName("body")[0].appendChild(memberTitle);
         document.getElementsByTagName("body")[0].appendChild(age);
@@ -41,4 +41,4 @@ request.onload = function() {
         document.getElementsByTagName("body")[0].appendChild(powersTitle);
         document.getElementsByTagName("body")[0].appendChild(powers);
     }
-}
+};

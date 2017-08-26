@@ -6,10 +6,10 @@ let onRoad = [];
 
 function carMaker(make, regNo, colour, fuelType, faults) {
     let car = {};
-    car.make = make;
-    car.regNo = regNo;
-    car.colour = colour
-    car.fuelType = fuelType;
+    car.make = make,
+    car.regNo = regNo,
+    car.colour = colour,
+    car.fuelType = fuelType,
     car.faults = faults;
     return car;
 }
@@ -19,9 +19,9 @@ function checkIn() {
     if (checkInRegNo === "") {
         alert("Error: invalid registration number");
     } else {
-        garage.push(onRoad.find(x => x.regNo === checkInRegNo));
+        garage.push(onRoad.find((x) => x.regNo === checkInRegNo));
 
-        let roadIndex = onRoad.findIndex(x => x.regNo === checkInRegNo)
+        let roadIndex = onRoad.findIndex((x) => x.regNo === checkInRegNo);
         onRoad.splice(roadIndex, 1);
     }
 }
@@ -31,22 +31,22 @@ function checkOut() {
     if (checkOutRegNo === "") {
         alert("Error: invalid registration number");
     } else {
-        onRoad.push(garage.find(y => y.regNo === checkOutRegNo));
+        onRoad.push(garage.find((y) => y.regNo === checkOutRegNo));
 
-        let garageIndex = garage.findIndex(y => y.regNo === checkOutRegNo)
+        let garageIndex = garage.findIndex((y) => y.regNo === checkOutRegNo);
         garage.splice(garageIndex, 1);
     }
 }
 
 function outputGarage() {
     let txt = "";
-    txt += "<table border='1'>"
-    for (car in garage) {
-        for (z in car) {
-            txt += "<tr><td>" + car.z + "</td></tr>" //TODO: make table creation work;
+    txt += "<table border='1'>";
+    for (let car in garage) {
+        for (let z in car) {
+            txt += "<tr><td>" + car.z + "</td></tr>"; //TODO: make table creation work;
         }
     }
-    txt += "</table>"
+    txt += "</table>";
     document.getElementById("outputGarage").innerHTML = txt;
 }
 
@@ -58,7 +58,7 @@ function calcBill() {
     if (calcBillRegNo === "") {
         alert("Error: invalid registration number");
     } else {
-        billCar = garage.find(y => y.regNo === calcBillRegNo);
+        billCar = garage.find((y) => y.regNo === calcBillRegNo);
 
     }
 
