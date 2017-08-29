@@ -2,7 +2,9 @@
 
 <head>
     <script src="Intermediate Exercise 6, 7 - Garage, Admin Interface.js"></script>
-    <style></style>
+    <style>
+        p.comm{font-family: "Courier New", Courier, monospace;}
+    </style>
 </head>
 
 <body>
@@ -21,15 +23,15 @@
                     <label>Car make: </label>
                     <select id="createMake" required>
                             <option value = "">Choose car make</option>
-                            <option value = "audi">Audi</option>
-                            <option value = "citroen">Citroen</option>
-                            <option value = "ford">Ford</option>
-                            <option value = "jaguar">Jaguar</option>
-                            <option value = "kia">Kia</option>
-                            <option value = "nissan">Nissan</option>
-                            <option value = "peugeot">Peugeot</option>
-                            <option value = "subaru">Subaru</option>
-                            <option value = "volswagen">Volkswagen</option>
+                            <option value = "AUDI">Audi</option>
+                            <option value = "CITROEN">Citroen</option>
+                            <option value = "FORD">Ford</option>
+                            <option value = "JAGUAR">Jaguar</option>
+                            <option value = "KIA">Kia</option>
+                            <option value = "NISSAN">Nissan</option>
+                            <option value = "PEUGEOT">Peugeot</option>
+                            <option value = "SUBARU">Subaru</option>
+                            <option value = "VOLKSWAGEN">Volkswagen</option>
                         </select>
                 </div>
                 <div>
@@ -40,9 +42,9 @@
                     <label>Fuel type</label>
                     <select id="createFuelType" required>
                             <option value = "">Choose fuel type</option>
-                            <option value = "petrol">Petrol</option>
-                            <option value = "diesel">Diesel</option>
-                            <option value = "electric">Electric</option>
+                            <option value = "Petrol">Petrol</option>
+                            <option value = "Diesel">Diesel</option>
+                            <option value = "Electric">Electric</option>
                         </select>
                 </div>
                 <div>
@@ -92,11 +94,11 @@
     </section>
     <div>
         <hr>
-        <p id="createCL"><button type="button" onclick="enableCommandLine()">Enable Command Line Interface</button></p>
-        <p id="createCB"></p>
+        <p id="outputBox"></p>
     </div>
     <div>
-        <p id="outputComms"></p>
+        <p id="createCL"><button type="button" onclick="enableCommandLine()">Enable Command Line Interface</button></p>
+        <p id="createCB"></p>
     </div>
 </body>
 

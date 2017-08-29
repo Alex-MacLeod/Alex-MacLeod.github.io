@@ -1,7 +1,6 @@
 "use.strict";
 
 let garage = [];
-
 let onRoad = [];
 
 function carMaker(make, regNo, colour, fuelType, faults) {
@@ -41,10 +40,13 @@ function checkOut() {
 function outputGarage() {
     let txt = "";
     txt += "<table border='1'>";
-    for (let car in garage) {
-        for (let z in car) {
-            txt += "<tr><td>" + car.z + "</td></tr>"; //TODO: make table creation work;
-        }
+    for (let v=0; v<garage.length; v++) {
+        txt += "<tr><td>" + "####" + "</td></tr>";
+        txt += "<tr><td>" + garage[v].make + "</td></tr>";
+        txt += "<tr><td>" + garage[v].regNo + "</td></tr>";
+        txt += "<tr><td>" + garage[v].colour + "</td></tr>";
+        txt += "<tr><td>" + garage[v].fuelType + "</td></tr>";
+        txt += "<tr><td>" + garage[v].faults + "</td></tr>";
     }
     txt += "</table>";
     document.getElementById("outputGarage").innerHTML = txt;
@@ -59,7 +61,6 @@ function calcBill() {
         alert("Error: invalid registration number");
     } else {
         billCar = garage.find((y) => y.regNo === calcBillRegNo);
-
     }
 
     let bill = "The bill for repairing " + billCar.regNo + " amounts to ";
@@ -98,8 +99,10 @@ function enableNumFaults() {
 }
 
 function enableCommandLine() {
-    let commLine = "<input id = \"commandLine\" placeholder = \"Input commands here\" type = \"text\" />";
+    let commBox = "<textarea id = \"commandHistory\" class = \"comm\" rows = 8 cols = 50 wrap = \"hard\" readonly></textarea>";
+    let commLine = "<input id = \"commandLine\" placeholder = \"Input commands here\" class = \"comm\ type = \"text\" />";
     let commSubmit = "<button type=\"button\" onclick=\"command()\">Submit</button>";
+    document.getElementById("outputBox").innerHTML = commBox;
     document.getElementById("createCL").innerHTML = commLine;
     document.getElementById("createCB").innerHTML = commSubmit;
 }
@@ -108,10 +111,10 @@ function command() {
     let commandInput = document.getElementById("commandLine").value.split(" ");
     let output;
     switch (commandInput[0]) {
-        default: output = `Did not recognise command ${commandInput[0]}. You can use the \"help\" command to find the list of commands available`;
+        default: output = `Did not recognise command \"${commandInput[0]}\". You can use the \"help\" command to find the list of commands available`;
         break;
         case "help":
-                output = "List of commands: calculate, checkIn, checkOut, create, help, output";
+                output = "List of commands: calculate, checkIn, checkOut, clear, create, help, output";
             break;
         case "calculate":
                 //TODO: implement calcBill function
@@ -122,6 +125,13 @@ function command() {
         case "checkOut":
                 //TODO: implement checkIn function
                 break;
+        case "clear":
+                if (undefined === commandInput[1]) {
+                    //TODO: implement clear function
+                } else {
+                    output = "ERROR: \"clear\" cannot take additional arguments";
+                }
+                break;
         case "create":
                 //TODO: implement createCar function
                 break;
@@ -129,5 +139,5 @@ function command() {
                 //TODO: implement outputgarage function
                 break;
     }
-    document.getElementById("outputComms").innerHTML = output;
+    document.getElementById("commandHistory").innerHTML += output + "\n";
 }
