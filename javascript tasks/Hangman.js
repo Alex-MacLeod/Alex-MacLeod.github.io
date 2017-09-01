@@ -11,6 +11,7 @@ let letters = [];
 let mistakes = 0;
 
 let playAgain = "<button type=\"button\" onclick=\"reset()\">Play again</button>";
+let games = 0;
 
 function requestFrom(data) {
     return new Promise((resolve) => {
@@ -153,4 +154,5 @@ function reset() {
     document.getElementById("drawArm").innerHTML = " ";
     document.getElementById("winLoseMessage").innerHTML = "";
     document.getElementById("playAgain").innerHTML = "";
+    games++;
 }
