@@ -16,8 +16,6 @@ let games = 0;
 let losses = 0;
 let wins = 0;
 
-let debugMode = false;
-
 function requestFrom(data) {
     return new Promise((resolve) => {
         request = new XMLHttpRequest();
@@ -44,8 +42,8 @@ function chooseWordFrom(list) {
 }
 
 function start(){
-    document.getElementById("startButton").innerHTML = "";
-    document.getElementById("loading").innerHTML = "<img src=\"loading.gif\" alt=\"Loading...\" style=\"width:80px;height:50px;\">";
+    //document.getElementById("startButton").innerHTML = "";
+    //document.getElementById("loading").innerHTML = "<img src=\"loading.gif\" alt=\"Loading...\" style=\"width:80px;height:50px;\">";
     requestFrom(wordsTxt).then(setupGame);
 }
 function setupGame() {
@@ -53,9 +51,9 @@ function setupGame() {
     word = word.substring(0,word.length-1); //added this line after work since it started adding mysterious
     for (let i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
         letters[i] = "_";
-        document.getElementById("letters").innerHTML += letters[i] + " ";
+        //document.getElementById("letters").innerHTML += letters[i] + " ";
     }
-    document.getElementById("loading").innerHTML = "";
+    //document.getElementById("loading").innerHTML = "";
 }
 
 function draw() {
@@ -88,18 +86,18 @@ function draw() {
 
 function win() {
     wins++;
-    document.getElementById("winLoseMessage").innerHTML = "You won! Well played!";
-    document.getElementById("playAgain").innerHTML = playAgain;
+    //document.getElementById("winLoseMessage").innerHTML = "You won! Well played!";
+    //document.getElementById("playAgain").innerHTML = playAgain;
 }
 
 function lose() {
     losses++;
-    document.getElementById("winLoseMessage").innerHTML = "You lost! The word was " + word;
-    document.getElementById("playAgain").innerHTML = playAgain;
+    //document.getElementById("winLoseMessage").innerHTML = "You lost! The word was " + word;
+    //document.getElementById("playAgain").innerHTML = playAgain;
 }
 
 function mistake() {
-    draw();
+    //draw();
     if (mistakes === 7) {
         lose();
     }
@@ -107,8 +105,8 @@ function mistake() {
 
 function checkLetter() {
     if (word.length>0) {
-        let gl = document.getElementById("guessLetter");
-        let guessedLetter = gl.options[gl.selectedIndex].value.toUpperCase();
+        //let gl = document.getElementById("guessLetter");
+        //let guessedLetter = gl.options[gl.selectedIndex].value.toUpperCase();
 
         if (word.includes(guessedLetter)) {
             let index = word.indexOf(guessedLetter);
@@ -117,19 +115,19 @@ function checkLetter() {
                     letters[k] = guessedLetter;
                 }
             }
-            document.getElementById("letters").innerHTML = "";
+            //document.getElementById("letters").innerHTML = "";
             for (let j = 0; j < letters.length; j++) {
-                document.getElementById("letters").innerHTML += letters[j] + " ";
+                //document.getElementById("letters").innerHTML += letters[j] + " ";
             }
         } else {
-            document.getElementById("mistakeLetters").innerHTML += guessedLetter + " ";
+            //document.getElementById("mistakeLetters").innerHTML += guessedLetter + " ";
             mistakes++;
             mistake();
         }
+
     } else {
         alert("Hold on, the game hasn't started yet!");
     }
-
 
     let stringLetters = "";
     for (let s = 0; s < letters.length; s++) {
@@ -140,9 +138,9 @@ function checkLetter() {
     }
 }
 
-function checkWord(w) {
+function checkWord() {
     if (word.length>0) {
-        let guessedWord = document.getElementById("guessWord").value;
+        //let guessedWord = document.getElementById("guessWord").value;
 
         if (word === guessedWord) {
             win();
@@ -150,6 +148,7 @@ function checkWord(w) {
             mistakes++;
             mistake();
         }
+        
     } else {
         alert("Hold on, the game hasn't started yet!");
     }
@@ -172,11 +171,4 @@ function reset() {
     document.getElementById("winLoseMessage").innerHTML = "";
     document.getElementById("playAgain").innerHTML = "";
     games++;
-}
-
-function debug() {
-    if (debugMode) {
-        document.getElementById("startButton").innerHTML = "Hangman [DEBUG]"
-
-    }
 }
