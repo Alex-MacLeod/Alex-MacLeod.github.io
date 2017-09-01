@@ -4,7 +4,6 @@ let wordsTxt = "https://raw.githubusercontent.com/dwyl/english-words/master/word
 let request;
 
 let wordList = [];
-let testWords = ["apple", "lemon", "arm", "clever", "apotheosis"];
 
 let word = "";
 let letters = [];
@@ -12,15 +11,21 @@ let letters = [];
 let mistakes = 0;
 
 let playAgain = "<button type=\"button\" onclick=\"reset()\">Play again</button>";
+let games = 0;
 
-request = new XMLHttpRequest();
-request.open("GET", wordsTxt, true);
-request.responseType = "text";
-request.send();
-request.onload = function () {
-    const requestData = request.responseText;
-    wordList = requestData.split("\n");
-};
+function requestFrom(data) {
+    return new Promise((resolve) => {
+        request = new XMLHttpRequest();
+        request.open("GET", data, true);
+        request.responseType = "text";
+        request.send();
+        request.onload = function () {
+            const requestData = request.responseText;
+            wordList = requestData.split("\n");
+            resolve(wordList);
+        };
+    })
+}
 
 function chooseWordFrom(list) {
     if (list.length > 0) {
@@ -30,12 +35,15 @@ function chooseWordFrom(list) {
         //console.log("Word is " + hangWord);
         return hangWord;
     } else {
-        alert("Error: words not in list");
+        alert("Error: no words in list");
     }
 }
 
-function start(list) {
-    word = chooseWordFrom(list);
+function start(){
+    requestFrom(wordsTxt).then(setupGame);
+}
+function setupGame() {
+    word = chooseWordFrom(wordList);
     word = word.substring(0,word.length-1); //added this line after work since it started adding mysterious
     for (let i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
         letters[i] = "_";
@@ -78,7 +86,7 @@ function win() {
 }
 
 function lose() {
-    document.getElementById("winLoseMessage").innerHTML = "You lost!";
+    document.getElementById("winLoseMessage").innerHTML = "You lost! The word was " + word;
     document.getElementById("playAgain").innerHTML = playAgain;
 }
 
@@ -146,4 +154,5 @@ function reset() {
     document.getElementById("drawArm").innerHTML = " ";
     document.getElementById("winLoseMessage").innerHTML = "";
     document.getElementById("playAgain").innerHTML = "";
+    games++;
 }
