@@ -1,0 +1,40 @@
+*HOMEPAGE(en)
+	- ABOUT ME (CV)
+		> Profile
+		> Education
+			~ Degree modules
+			~ Coursework?
+		> Experience
+			~ $PROJECTS
+		> Skills
+	- MY PROJECTS
+		> Adventures of Barren Moor?
+		> Garage (JavaScript)?
+		> HANGMAN
+		> APOLLO CINEMAS
+			~ Role
+		> Personal Website
+			~ $HOMEPAGE(en)
+		>$GitHub
+	- MY HOBBIES
+		> PHOTOGRAPHY
+		> ANIME?
+		> GAMES?
+		> WALKS?
+		> POLITICS?
+*Footer
+	- CONTACT
+		> Contact form
+	- External Links
+		> GitHub
+		> LinkedIn
+	- Credits/Copywright
+		> QAC
+		> Start Bootstrap
+		> JJ: ideas
+		> ??: contact form
+	- Sitemap
+
+*HOMEPAGE(fr)
+
+*HOMEPAGE(cn)?
