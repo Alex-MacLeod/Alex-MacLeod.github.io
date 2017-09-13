@@ -2,48 +2,32 @@
 
 (function() {
 
-    var HangmanController =  function() {
+    var HangmanController =  function($http) {
         var vm = this;
-
-        vm.wordsTxt = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt";
-
-        var request;
-
-        var wordList = [];
 
         var word = "";
         var letters = [];
 
-        vm.mistakes = 0;
+        var mistakes = 0;
 
-        vm.playAgain = "<button type=\"button\" onclick=\"reset()\">Play again</button>";
+        var playAgain = "<button type=\"button\" onclick=\"reset()\">Play again</button>";
 
-        vm.games = 0;
-        vm.losses = 0;
-        vm.wins = 0;
+        var games = 0;
+        var losses = 0;
+        var wins = 0;
 
-        vm.debugMode = false;
-
-        function requestFrom(data) {
-            return new Promise((resolve) => {
-                request = new XMLHttpRequest();
-                request.open("GET", data, true);
-                request.responseType = "text";
-                request.send();
-                request.onload = function () {
-                    const requestData = request.responseText;
-                    wordList = requestData.split("\n");
-                    resolve(wordList);
-                };
-            })
+        function getWordList() {
+            $http.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
+                .then(function (response) {
+                    vm.wordList = response.data.split("\n");
+                });
         }
 
         function chooseWordFrom(list) {
             if (list.length > 0) {
-                vm.random = Math.floor(Math.random() * list.length);
-                vm.randWord = list[random];
-                vm.hangWord = randWord.toUpperCase();
-                return hangWord;
+                var random = Math.floor(Math.random() * list.length);
+                var randWord = list[random];
+                return randWord.toUpperCase();
             } else {
                 alert("Error: no words in list");
             }
@@ -52,7 +36,7 @@
         vm.start = function (){
             document.getElementById("startButton").innerHTML = "";
             document.getElementById("loading").innerHTML = "<img src=\"loading.gif\" alt=\"Loading...\" style=\"width:80px;height:50px;\">";
-            requestFrom(wordsTxt).then(setupGame);
+            getWordList().then(setupGame);
         };
 
         function setupGame() {
@@ -181,13 +165,7 @@
             games++;
         };
 
-        function debug() {
-            if (debugMode) {
-                document.getElementById("startButton").innerHTML = "Hangman [DEBUG]"
-            }
-        }
-
     };
 
-    alexApp.controller('hangmanController', [HangmanController]);
+    alexApp.controller('hangmanController', ['$http', HangmanController]);
 }());
