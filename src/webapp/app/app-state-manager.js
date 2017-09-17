@@ -17,6 +17,9 @@
         }).state("hangman", {
             url: "/myprojects/hangman",
             templateUrl: "app/features/hangman/hangman.html"
+        }).state("hobbies", {
+            url: "/myhobbies",
+            templateUrl: "app/features/hobbies/hobbies.html"
         }).state("projects", {
             url: "/myprojects",
             templateUrl: "app/features/projects/projects.html"

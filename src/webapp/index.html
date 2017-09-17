@@ -44,7 +44,7 @@
                   <a class="nav-link js-scroll-trigger" ui-sref="projects">My Projects</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" ui-sref="contact">Contact</a>
+                  <a class="nav-link js-scroll-trigger" ui-sref="hobbies">My Hobbies</a>
                 </li>
               </ul>
             </div>
@@ -54,40 +54,37 @@
       <div ui-view></div>
 
       <!-- Footer -->
-      <footer>
-          <div class="verybottom">
+      <footer class="card-footer verybottom bg-dark">
               <div class="container">
                   <div class="row">
-                      <div class="col-md-12">
-                          <div class="aligncenter">
-                              <ul class="ml-auto">
-                                  <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                  <li><a href="https://github.com/AlexMacLeod23" class="icoGitHub" title="GitHub"><i class="fa fa-github"></i></a></li>
-                                  <li><a href="https://www.linkedin.com/in/alexandermacleod/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                              </ul>
-                          </div>
+                      <div class="col-md-4">
+                        <span>External links</span>
+                          <ul class="ml-auto list-inline">
+                              <li class="list-inline-item">
+                                  <a href="https://github.com/AlexMacLeod23" class="icoGitHub" title="GitHub"><i class="fa fa-github"></i></a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="https://www.linkedin.com/in/alexandermacleod/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                              </li>
+                          </ul>
                       </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="aligncenter">
-                              <p>
-                                  &copy; Start Bootstrap - All right reserved
-                              </p>
-                              <div class="credits">
-                                  <!--
-                                          Licensing information: https://github.com/BlackrockDigital/startbootstrap/blob/master/LICENSE
-                                   -->
-                                  <a href="https://startbootstrap.com/">Free Bootstrap Themes</a> by <a href="https://startbootstrap.com/">Start Bootstrap</a>
-                              </div>
-                          </div>
+                      <div class="col-md-4">
+                          <span>Sitemap</span>
                       </div>
-                  </div>
-                  <div id="copyright">
-                      <p>&copy; Alexander MacLeod. All rights reserved. | Design by <a href="http://startbootstrap.com" rel="nofollow">David Miller</a>.</p>
+                      <div  class="col-md-4">
+                            <a ui-sref="contact" class="text-primary" title="GitHub">Contact me</a>
+                      </div>
                   </div>
               </div>
-          </div>
+              <div class="container">
+                  <div id="credits">
+                      <!--Licensing information: https://github.com/BlackrockDigital/startbootstrap/blob/master/LICENSE-->
+                      <a href="https://startbootstrap.com/">Free Bootstrap Themes</a> by <a href="https://startbootstrap.com/">Start Bootstrap</a>
+                  </div>
+                  <div id="copyright">
+                      <p>&copy; Alexander MacLeod. All rights reserved. | Design by <a href="http://startbootstrap.com" rel="nofollow">Start Bootstrap</a>.</p>
+                  </div>
+              </div>
       </footer>
 
       <!-- Angular -->

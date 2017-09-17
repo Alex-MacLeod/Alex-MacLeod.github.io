@@ -1,87 +1,109 @@
 <div ng-controller="hangmanController as hangCtrl">
+    <header class="masthead">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="hangmanHeading">Hangman</h1>
+                <hr>
+                <p class="text-light">Source code can be found <a class="text-primary" href="https://github.com/AlexMacLeod23/AlexMacLeod23.github.io/tree/developer/src/webapp/app/features/hangman">here</a> on GitHub</p>
+            </div>
+        </div>
+    </header>
     <!-- Hangman Game -->
-    <section>
-        <div>
-            <h1 id = "title">Hangman </h1>
-            <hr>
-        </div>
-        <div>
-            <p id="startButton"><button type="button" onclick="start()">Start game!</button></p>
-            <p id="loading"></p>
-            <p id="letters"></p>
-        </div>
-        <section>
-            <div>
-                <hr>
+    <section class="bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mx-auto text-center">
+                    <div class="mx-auto text-center" ng-show="hangCtrl.showGuess">
+                        <div>
+                            <form ng-submit="hangCtrl.checkLetter(guessedLetter)">
+                                <select id="guessLetter" ng-model="guessedLetter" required title="Guess letter">
+                                        <option value = "A">A</option>
+                                        <option value = "B">B</option>
+                                        <option value = "C">C</option>
+                                        <option value = "D">D</option>
+                                        <option value = "E">E</option>
+                                        <option value = "F">F</option>
+                                        <option value = "G">G</option>
+                                        <option value = "H">H</option>
+                                        <option value = "I">I</option>
+                                        <option value = "J">J</option>
+                                        <option value = "K">K</option>
+                                        <option value = "L">L</option>
+                                        <option value = "M">M</option>
+                                        <option value = "N">N</option>
+                                        <option value = "O">O</option>
+                                        <option value = "P">P</option>
+                                        <option value = "Q">Q</option>
+                                        <option value = "R">R</option>
+                                        <option value = "S">S</option>
+                                        <option value = "T">T</option>
+                                        <option value = "U">U</option>
+                                        <option value = "V">V</option>
+                                        <option value = "W">W</option>
+                                        <option value = "X">X</option>
+                                        <option value = "Y">Y</option>
+                                        <option value = "Z">Z</option>
+                                </select>
+                                <button type="submit" class="btn btn-default">Guess letter</button>
+                            </form>
+                            <div>
+                                <hr class="primary">
+                            </div>
+                            <form ng-submit="hangCtrl.checkWord(guessedWord)">
+                                <input id="guessWord" placeholder="Enter word here" type="text" ng-model="guessedWord" required title="Please guess a word"/>
+                                <button type="submit" class="btn btn-default">Guess word</button>
+                            </form>
+                        </div>
+                        <div>
+                            <div>
+                                <hr class="primary">
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-default" ng-click="hangCtrl.getDefinition()" ng-show="hangCtrl.showGetDefinition">Get definition</button>
+                                <img src="assets/img/loading.gif" alt="Loading definition..." ng-show="hangCtrl.showLoadingDefinition" id="loadingDefinition" style="width:80px;height:80px;">
+                                <span class="text-light">{{hangCtrl.definition}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mx-auto text-center" ng-show="hangCtrl.showPlayAgain">
+                        <h3 class="text-light" id="winLoseMessage">{{hangCtrl.showWinLoseMessage}}</h3>
+                        <button type="button" class="btn btn-default btn-xl" id="playAgain" ng-click="hangCtrl.reset()">Play again</button>
+                    </div>
+                </div>
+                <div class="col-lg-3 mx-auto text-center">
+                    <div class="mx-auto text-center">
+                        <button type="button" class="btn btn-default btn-xl" ng-show="hangCtrl.showStartButton" id="startButton" ng-click="hangCtrl.start()">Start game!</button>
+                        <img src="assets/img/loading.gif" alt="Loading game..." ng-show="hangCtrl.showLoading" id="loading" style="width:80px;height:80px;">
+                        <h3 class="text-light" id="letters">{{hangCtrl.showLetters}}</h3>
+                    </div>
+                    <div class="mx-auto text-center" ng-show="hangCtrl.showGallows">
+                        <hr class="light">
+                        <div>
+                            <img ng-src="assets/img/hangman/{{hangCtrl.gallows}}" alt="Hangman" id="hangman" style="width:160px;height:240px;">
+                        </div>
+                        <div>
+                            <p class="text-light" id="mistakeLetters">{{hangCtrl.showMistakeLetters}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mx-auto text-center">
+                    <div class="text-center" ng-show="hangCtrl.showStats">
+                        <h3 class="text-light" id="statsTitle">Statistics</h3>
+                        <table class="table-bordered" style="padding: 20px">
+                            <tr>
+                                <th class="text-light table-bordered"> Games played </th>
+                                <th class="text-light table-bordered"> Won </th>
+                                <th class="text-light table-bordered"> Lost </th>
+                            </tr>
+                            <tr>
+                                <td class="text-light table-bordered">{{hangCtrl.games}}</td>
+                                <td class="text-light table-bordered">{{hangCtrl.wins}}</td>
+                                <td class="text-light table-bordered">{{hangCtrl.losses}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div>
-                <select id="guessLetter" required>
-                    <option value = "">Choose letter</option>
-                    <option value = "a">A</option>
-                    <option value = "b">B</option>
-                    <option value = "c">C</option>
-                    <option value = "d">D</option>
-                    <option value = "e">E</option>
-                    <option value = "f">F</option>
-                    <option value = "g">G</option>
-                    <option value = "h">H</option>
-                    <option value = "i">I</option>
-                    <option value = "j">J</option>
-                    <option value = "k">K</option>
-                    <option value = "l">L</option>
-                    <option value = "m">M</option>
-                    <option value = "n">N</option>
-                    <option value = "o">O</option>
-                    <option value = "p">P</option>
-                    <option value = "q">Q</option>
-                    <option value = "r">R</option>
-                    <option value = "s">S</option>
-                    <option value = "t">T</option>
-                    <option value = "u">U</option>
-                    <option value = "v">V</option>
-                    <option value = "w">W</option>
-                    <option value = "x">X</option>
-                    <option value = "y">Y</option>
-                    <option value = "z">Z</option>
-                </select>
-                <button type="button" onclick="checkLetter()">Submit letter</button>
-            </div>
-            <div>
-                Guess word: <input id="guessWord" placeholder="Enter word here" type="text" />
-                <button type="button" onclick="checkWord()">Guess</button>
-            </div>
-        </section>
-        <section>
-            <div>
-                <hr>
-                <p id="mistakeLetters"></p>
-            </div>
-            <div>
-                <p id="drawArm"> </p>
-            </div>
-            <div>
-                <p id="draw6"> </p>
-            </div>
-            <div>
-                <p id="draw5"> </p>
-            </div>
-            <div>
-                <p id="draw4"> </p>
-            </div>
-            <div>
-                <p id="draw3"> </p>
-            </div>
-            <div>
-                <p id="draw2"> </p>
-            </div>
-            <div>
-                <p id="drawBase"> </p>
-            </div>
-        </section>
-        <div>
-            <hr>
-            <h3 id="winLoseMessage"></h3>
-            <p id="playAgain"></p>
         </div>
     </section>
 </div>

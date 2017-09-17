@@ -5,21 +5,41 @@
     var HangmanController =  function($http) {
         var vm = this;
 
+        vm.showStartButton = true;
+        vm.showLoading = false;
+        vm.showLetters = "";
+
+        vm.showGuess = false;
+
+        vm.showGetDefinition = true;
+        vm.showLoadingDefinition = false;
+        vm.definition = "";
+
+        vm.showMistakeLetters = "";
+        vm.showGallows = false;
+        vm.gallows = "hangmanBlank.jpg";
+
+        vm.showWinLoseMessage = "";
+        vm.showPlayAgain = false;
+
+        vm.showStats = false;
+        vm.games = 0;
+        vm.losses = 0;
+        vm.wins = 0;
+
         var word = "";
         var letters = [];
 
         var mistakes = 0;
 
-        var playAgain = "<button type=\"button\" onclick=\"reset()\">Play again</button>";
-
-        var games = 0;
-        var losses = 0;
-        var wins = 0;
-
         function getWordList() {
             $http.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
                 .then(function (response) {
-                    vm.wordList = response.data.split("\n");
+                    var wordList = response.data.split("\n");
+                    console.log("wordList length = " + wordList.length);
+                    setupGame(wordList);
+                }, function (error) {
+                    console.log("getWordList ERROR: " + error);
                 });
         }
 
@@ -34,43 +54,47 @@
         }
 
         vm.start = function (){
-            document.getElementById("startButton").innerHTML = "";
-            document.getElementById("loading").innerHTML = "<img src=\"loading.gif\" alt=\"Loading...\" style=\"width:80px;height:50px;\">";
-            getWordList().then(setupGame);
+            vm.showStartButton = !vm.showStartButton;
+            vm.showLoading = !vm.showLoading;
+            getWordList();
         };
 
-        function setupGame() {
-            word = chooseWordFrom(wordList);
+        function setupGame(list) {
+            word = chooseWordFrom(list);
+            console.log("Word is " + word);
             word = word.substring(0,word.length-1); //added this line after work since it started adding mysterious
             for (var i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
                 letters[i] = "_";
-                document.getElementById("letters").innerHTML += letters[i] + " ";
+                vm.showLetters += letters[i] + " ";
             }
-            document.getElementById("loading").innerHTML = "";
+            vm.showLoading = !vm.showLoading;
+            vm.showGuess = !vm.showGuess;
+            vm.showGallows = !vm.showGallows;
+            console.log("Ready to play!");
         }
 
-        function draw() {
+        function drawGallows() {
             switch (true) {
                 case (mistakes === 1):
-                    document.getElementById("drawBase").innerHTML = "-------------";
+                    vm.gallows = "hangmanNoPost.jpg";
                     break;
                 case (mistakes === 2):
-                    document.getElementById("draw2").innerHTML = "\n" + "|";
+                    vm.gallows = "hangmanNoArm.jpg";
                     break;
                 case (mistakes === 3):
-                    document.getElementById("draw3").innerHTML = "\n" + "|" + "\n" + "/\\";
+                    vm.gallows = "hangmanNoPerson.jpg";
                     break;
                 case (mistakes === 4):
-                    document.getElementById("draw4").innerHTML = "\n" + "|" + "\n" + "/|\\";
+                    vm.gallows = "hangmanNoBody.jpg";
                     break;
                 case (mistakes === 5):
-                    document.getElementById("draw5").innerHTML = "\n" + "|" + "\n" + "O";
+                    vm.gallows = "hangmanNoLegs.jpg";
                     break;
                 case (mistakes === 6):
-                    document.getElementById("draw6").innerHTML = "\n" + "|" + "\n" + "|";
+                    vm.gallows = "hangmanNoRope.jpg";
                     break;
                 case (mistakes === 7):
-                    document.getElementById("drawArm").innerHTML = "_________";
+                    vm.gallows = "hangmanComplete.jpg";
                     break;
                 default:
                     alert("Draw error");
@@ -78,29 +102,32 @@
         }
 
         function win() {
-            wins++;
-            document.getElementById("winLoseMessage").innerHTML = "You won! Well played!";
-            document.getElementById("playAgain").innerHTML = playAgain;
+            vm.wins++;
+            vm.games++;
+            vm.showGuess = !vm.showGuess;
+            vm.showWinLoseMessage = "You won! Well played!";
+            vm.showPlayAgain = !vm.showPlayAgain;
         }
 
         function lose() {
-            losses++;
-            document.getElementById("winLoseMessage").innerHTML = "You lost! The word was " + word;
-            document.getElementById("playAgain").innerHTML = playAgain;
+            vm.losses++;
+            vm.games++;
+            vm.showGuess = !vm.showGuess;
+            vm.showWinLoseMessage = "You lost! The word was " + word;
+            vm.showPlayAgain = !vm.showPlayAgain;
         }
 
         function mistake() {
-            draw();
+            mistakes++;
+            drawGallows();
             if (mistakes === 7) {
                 lose();
             }
         }
 
-        vm.checkLetter = function () {
+        vm.checkLetter = function (guessedLetter) {
             if (word.length>0) {
-                var gl = document.getElementById("guessLetter");
-                var guessedLetter = gl.options[gl.selectedIndex].value.toUpperCase();
-
+                console.log("guessedLetter = " + guessedLetter);
                 if (word.includes(guessedLetter)) {
                     var index = word.indexOf(guessedLetter);
                     for (var k = index; k < word.length; k++) {
@@ -108,61 +135,99 @@
                             letters[k] = guessedLetter;
                         }
                     }
-                    document.getElementById("letters").innerHTML = "";
+                    vm.showLetters = "";
                     for (var j = 0; j < letters.length; j++) {
-                        document.getElementById("letters").innerHTML += letters[j] + " ";
+                        vm.showLetters += letters[j] + " ";
                     }
+
+                    var stringLetters = "";
+                    for (var s = 0; s < letters.length; s++) {
+                        stringLetters += letters[s];
+                    }
+                    if (stringLetters === word) {
+                        win();
+                    }
+                } else if (guessedLetter===undefined) {
+                    alert("Don't forget to choose a letter");
                 } else {
-                    document.getElementById("mistakeLetters").innerHTML += guessedLetter + " ";
-                    mistakes++;
+                    vm.showMistakeLetters += guessedLetter + " ";
                     mistake();
                 }
             } else {
                 alert("Hold on, the game hasn't started yet!");
-            }
-
-
-            var stringLetters = "";
-            for (var s = 0; s < letters.length; s++) {
-                stringLetters += letters[s];
-            }
-            if (stringLetters === word) {
-                win();
             }
         };
 
-        vm.checkWord = function () {
+        vm.checkWord = function (guessedWord) {
             if (word.length>0) {
-                vm.guessedWord = document.getElementById("guessWord").value;
-
+                guessedWord = guessedWord.toUpperCase();
                 if (word === guessedWord) {
                     win();
                 } else {
-                    mistakes++;
                     mistake();
                 }
+            } else if (guessedWord==="") {
+                alert("Don't forget to choose a word");
             } else {
                 alert("Hold on, the game hasn't started yet!");
             }
+        };
+
+        vm.getDefinition = function () {
+            vm.showGetDefinition = !vm.showGetDefinition;
+            /*vm.showLoadingDefinition = !vm.showLoadingDefinition;
+            $http({
+                method: "GET",
+                url: "https://od-api.oxforddictionaries.com/api/v1/inflections/en/" + word.toLowerCase(),
+                headers: {
+                    "Accept": "application/json",
+                    "app_id": "1643e9d1",
+                    "app_key": "ffd1e350ac1275bd2b8c23bca8c064d1"
+                }
+                }).then(function (response) {
+                    console.log(word + " confirmed to be in dictionary");
+                    var rootWord = response.data.results.lexicalEntries.inflectionOf.text;
+                    console.log("rootWord = " + rootWord);
+                    $http({
+                        method: "GET",
+                        url: "https://od-api.oxforddictionaries.com/api/v1/entries/en/" + rootWord,
+                        headers: {
+                            "Accept": "application/json",
+                            "app_id": "1643e9d1",
+                            "app_key": "ffd1e350ac1275bd2b8c23bca8c064d1"
+                        }
+                        }).then(function (response) {
+                            console.log("Received definition for " + rootWord);
+                            vm.definition = response.data.results.lexicalEntries.entries.senses.definitions[0];
+                            vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                        }, function (error) {
+                            console.log("getDefinition ERROR: " + error);
+                            vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                            vm.definition = "Error loading definition";
+                        });
+                }, function (error) {
+                    console.log("getDefinition ERROR: " + error);
+                    vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                    vm.definition = "Error loading definition";
+                });*/
+            vm.definition="" +
+                "Sorry, not yet implemented";
         };
 
         vm.reset = function () {
             word = "";
             letters = [];
             mistakes = 0;
-            document.getElementById("startButton").innerHTML = '<button type="button" onclick="start(wordList)">Start game!</button>';
-            document.getElementById("letters").innerHTML = "";
-            document.getElementById("mistakeLetters").innerHTML = "";
-            document.getElementById("drawBase").innerHTML = " ";
-            document.getElementById("draw2").innerHTML = " ";
-            document.getElementById("draw3").innerHTML = " ";
-            document.getElementById("draw4").innerHTML = " ";
-            document.getElementById("draw5").innerHTML = " ";
-            document.getElementById("draw6").innerHTML = " ";
-            document.getElementById("drawArm").innerHTML = " ";
-            document.getElementById("winLoseMessage").innerHTML = "";
-            document.getElementById("playAgain").innerHTML = "";
-            games++;
+            vm.showStartButton = !vm.showStartButton;
+            vm.showLetters = "";
+            vm.showGetDefinition = true;
+            vm.definition = "";
+            vm.showMistakeLetters = "";
+            vm.showGallows = !vm.showGallows;
+            vm.gallows = "hangmanBlank.jpg";
+            vm.showWinLoseMessage = "";
+            vm.showPlayAgain = !vm.showPlayAgain;
+            vm.showStats = true;
         };
 
     };
