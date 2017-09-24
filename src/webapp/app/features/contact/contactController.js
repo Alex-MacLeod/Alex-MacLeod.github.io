@@ -2,7 +2,7 @@
 
 (function() {
 
-    var ContactController =  function() {
+    let ContactController =  function() {
 
     };
 

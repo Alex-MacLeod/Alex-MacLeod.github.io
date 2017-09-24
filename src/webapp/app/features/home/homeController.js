@@ -2,7 +2,7 @@
 
 (function() {
 
-    var HomeController =  function() {
+    let HomeController =  function() {
 
     };
 

@@ -2,7 +2,7 @@
 
 (function() {
 
-    var AboutController =  function() {
+    let AboutController =  function() {
 
     };
 

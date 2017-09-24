@@ -2,8 +2,8 @@
 
 (function() {
 
-    var ProjectsController =  function() {
-        //var vm = this;
+    let ProjectsController =  function() {
+        //let vm = this;
 
     };
 

@@ -1,5 +1,5 @@
 *HOMEPAGE(en)
-	- ABOUT ME (CV)
+	- ABOUT ME (CV)--
 		> Profile
 		> Education
 			~ Degree modules
@@ -7,10 +7,10 @@
 		> Experience
 			~ $PROJECTS
 		> Skills
-	- MY PROJECTS
-		> Adventures of Barren Moor?
+	- MY PROJECTS--
+		> Adventures of Barren Moor?--
 		> Garage (JavaScript)?
-		> HANGMAN
+		> HANGMAN--
 		> APOLLO CINEMAS
 			~ Role
 		> Personal Website
@@ -25,12 +25,12 @@
 *Footer
 	- CONTACT
 		> Contact form
-	- External Links
-		> GitHub
-		> LinkedIn
-	- Credits/Copywright
+	- External Links--
+		> GitHub--
+		> LinkedIn--
+	- Credits/Copywright--
 		> QAC
-		> Start Bootstrap
+		> Start Bootstrap--
 		> JJ: ideas
 		> ??: contact form
 	- Sitemap

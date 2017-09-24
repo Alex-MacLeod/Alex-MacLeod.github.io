@@ -2,8 +2,8 @@
 
 (function() {
 
-    var BobbiesController =  function() {
-        //var vm = this;
+    let BobbiesController =  function() {
+        //let vm = this;
 
     };
 

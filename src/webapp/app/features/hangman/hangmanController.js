@@ -2,40 +2,27 @@
 
 (function() {
 
-    var HangmanController =  function($http) {
-        var vm = this;
+    let HangmanController =  function($http) {
+        let vm = this;
 
         vm.showStartButton = true;
-        vm.showLoading = false;
-        vm.showLetters = "";
-
-        vm.showGuess = false;
-
         vm.showGetDefinition = true;
-        vm.showLoadingDefinition = false;
-        vm.definition = "";
-
         vm.showMistakeLetters = "";
-        vm.showGallows = false;
         vm.gallows = "hangmanBlank.jpg";
-
         vm.showWinLoseMessage = "";
-        vm.showPlayAgain = false;
-
-        vm.showStats = false;
         vm.games = 0;
         vm.losses = 0;
         vm.wins = 0;
 
-        var word = "";
-        var letters = [];
+        let word = "";
+        let letters = [];
 
-        var mistakes = 0;
+        let mistakes = 0;
 
         function getWordList() {
             $http.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
                 .then(function (response) {
-                    var wordList = response.data.split("\n");
+                    let wordList = response.data.split("\n");
                     console.log("wordList length = " + wordList.length);
                     setupGame(wordList);
                 }, function (error) {
@@ -45,8 +32,8 @@
 
         function chooseWordFrom(list) {
             if (list.length > 0) {
-                var random = Math.floor(Math.random() * list.length);
-                var randWord = list[random];
+                let random = Math.floor(Math.random() * list.length);
+                let randWord = list[random];
                 return randWord.toUpperCase();
             } else {
                 alert("Error: no words in list");
@@ -54,8 +41,8 @@
         }
 
         vm.start = function (){
-            vm.showStartButton = !vm.showStartButton;
-            vm.showLoading = !vm.showLoading;
+            vm.showStartButton = false;
+            vm.showLoading = true;
             getWordList();
         };
 
@@ -63,13 +50,13 @@
             word = chooseWordFrom(list);
             console.log("Word is " + word);
             word = word.substring(0,word.length-1); //added this line after work since it started adding mysterious
-            for (var i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
+            for (let i = 0; i < word.length; i++) {        //character at end of string when i tested it at home
                 letters[i] = "_";
                 vm.showLetters += letters[i] + " ";
             }
-            vm.showLoading = !vm.showLoading;
-            vm.showGuess = !vm.showGuess;
-            vm.showGallows = !vm.showGallows;
+            vm.showLoading = false;
+            vm.showGuess = true;
+            vm.showGallows = true;
             console.log("Ready to play!");
         }
 
@@ -104,17 +91,17 @@
         function win() {
             vm.wins++;
             vm.games++;
-            vm.showGuess = !vm.showGuess;
+            vm.showGuess = false;
             vm.showWinLoseMessage = "You won! Well played!";
-            vm.showPlayAgain = !vm.showPlayAgain;
+            vm.showPlayAgain = true;
         }
 
         function lose() {
             vm.losses++;
             vm.games++;
-            vm.showGuess = !vm.showGuess;
+            vm.showGuess = false;
             vm.showWinLoseMessage = "You lost! The word was " + word;
-            vm.showPlayAgain = !vm.showPlayAgain;
+            vm.showPlayAgain = true;
         }
 
         function mistake() {
@@ -129,19 +116,19 @@
             if (word.length>0) {
                 console.log("guessedLetter = " + guessedLetter);
                 if (word.includes(guessedLetter)) {
-                    var index = word.indexOf(guessedLetter);
-                    for (var k = index; k < word.length; k++) {
+                    let index = word.indexOf(guessedLetter);
+                    for (let k = index; k < word.length; k++) {
                         if (word.charAt(k) === guessedLetter) {
                             letters[k] = guessedLetter;
                         }
                     }
                     vm.showLetters = "";
-                    for (var j = 0; j < letters.length; j++) {
+                    for (let j = 0; j < letters.length; j++) {
                         vm.showLetters += letters[j] + " ";
                     }
 
-                    var stringLetters = "";
-                    for (var s = 0; s < letters.length; s++) {
+                    let stringLetters = "";
+                    for (let s = 0; s < letters.length; s++) {
                         stringLetters += letters[s];
                     }
                     if (stringLetters === word) {
@@ -174,19 +161,18 @@
         };
 
         vm.getDefinition = function () {
-            vm.showGetDefinition = !vm.showGetDefinition;
-            /*vm.showLoadingDefinition = !vm.showLoadingDefinition;
+            vm.showGetDefinition = false;
+            /*vm.showLoadingDefinition = true;
             $http({
                 method: "GET",
                 url: "https://od-api.oxforddictionaries.com/api/v1/inflections/en/" + word.toLowerCase(),
                 headers: {
                     "Accept": "application/json",
                     "app_id": "1643e9d1",
-                    "app_key": "ffd1e350ac1275bd2b8c23bca8c064d1"
-                }
+                    "app_key": "ffd1e350ac1275bd2b8c23bca8c064d1"}
                 }).then(function (response) {
                     console.log(word + " confirmed to be in dictionary");
-                    var rootWord = response.data.results.lexicalEntries.inflectionOf.text;
+                    let rootWord = response.data.results.lexicalEntries.inflectionOf.text;
                     console.log("rootWord = " + rootWord);
                     $http({
                         method: "GET",
@@ -199,34 +185,33 @@
                         }).then(function (response) {
                             console.log("Received definition for " + rootWord);
                             vm.definition = response.data.results.lexicalEntries.entries.senses.definitions[0];
-                            vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                            vm.showLoadingDefinition = false;
                         }, function (error) {
                             console.log("getDefinition ERROR: " + error);
-                            vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                            vm.showLoadingDefinition = false;
                             vm.definition = "Error loading definition";
                         });
                 }, function (error) {
                     console.log("getDefinition ERROR: " + error);
-                    vm.showLoadingDefinition = !vm.showLoadingDefinition;
+                    vm.showLoadingDefinition = false;
                     vm.definition = "Error loading definition";
                 });*/
-            vm.definition="" +
-                "Sorry, not yet implemented";
+            vm.definition = "Sorry, not yet implemented";
         };
 
         vm.reset = function () {
             word = "";
             letters = [];
             mistakes = 0;
-            vm.showStartButton = !vm.showStartButton;
+            vm.showStartButton = true;
             vm.showLetters = "";
             vm.showGetDefinition = true;
             vm.definition = "";
             vm.showMistakeLetters = "";
-            vm.showGallows = !vm.showGallows;
+            vm.showGallows = false;
             vm.gallows = "hangmanBlank.jpg";
             vm.showWinLoseMessage = "";
-            vm.showPlayAgain = !vm.showPlayAgain;
+            vm.showPlayAgain = false;
             vm.showStats = true;
         };
 
