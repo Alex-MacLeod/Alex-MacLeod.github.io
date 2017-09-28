@@ -32,17 +32,6 @@
 
         var mistakes = 0;
 
-        function getWordList() {
-            $http.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
-                .then(function (response) {
-                    var wordList = response.data.split("\n");
-                    console.log("wordList length = " + wordList.length);
-                    setupGame(wordList);
-                }, function (error) {
-                    console.log("getWordList ERROR: " + error);
-                });
-        }
-
         function chooseWordFrom(list) {
             if (list.length > 0) {
                 var random = Math.floor(Math.random() * list.length);
@@ -71,6 +60,17 @@
             vm.showGuess = !vm.showGuess;
             vm.showGallows = !vm.showGallows;
             console.log("Ready to play!");
+        }
+
+        function getWordList() {
+            $http.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
+                .then(function (response) {
+                    var wordList = response.data.split("\n");
+                    console.log("wordList length = " + wordList.length);
+                    setupGame(wordList);
+                }, function (error) {
+                    console.log("getWordList ERROR: " + error);
+                });
         }
 
         function drawGallows() {
