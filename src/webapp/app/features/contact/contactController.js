@@ -26,13 +26,12 @@
         }
 
         function isValidEmail(email) { // see:
-            // language=JSRegexp
-            let reEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+            let reEmail = new RegExp("^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$");
             return reEmail.test(email);
         }
 
         function isValidPhone(phone) { // see:
-            let rePhone = /^07([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/;
+            let rePhone = new RegExp("^07([\\d]{3})[(\\D\\s)]?[\\d]{3}[(\\D\\s)]?[\\d]{3}$");
             return rePhone.test(phone);
         }
 

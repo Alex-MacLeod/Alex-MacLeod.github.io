@@ -94,7 +94,7 @@ gulp.task("copy", function() {
       "!node_modules/font-awesome/*.md",
       "!node_modules/font-awesome/*.json"
     ])
-    .pipe(gulp.dest("vendor/font-awesome"))
+    .pipe(gulp.dest("vendor/font-awesome"));
 });
 
 // Default task
@@ -106,7 +106,7 @@ gulp.task("browserSync", function() {
     server: {
       baseDir: ""
     },
-  })
+  });
 });
 
 // Dev task with browserSync
