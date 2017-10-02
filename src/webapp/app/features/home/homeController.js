@@ -2,9 +2,9 @@
 
 (function() {
 
-    var HomeController =  function() {
+    let HomeController =  function() {
 
     };
 
-    alexApp.controller('homeController', [HomeController]);
+    alexApp.controller("homeController", [HomeController]);
 }());

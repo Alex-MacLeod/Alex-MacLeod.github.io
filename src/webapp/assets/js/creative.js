@@ -2,12 +2,12 @@
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+  $("a.js-scroll-trigger[href*=\"#\"]:not([href=\"#\"])").click(function() {
+    if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") && location.hostname === this.hostname) {
+      let target = $(this.hash);
+      target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
       if (target.length) {
-        $('html, body').animate({
+        $("html, body").animate({
           scrollTop: (target.offset().top - 48)
         }, 1000, "easeInOutExpo");
         return false;
@@ -16,13 +16,13 @@
   });
 
   // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
+  $(".js-scroll-trigger").click(function() {
+    $(".navbar-collapse").collapse("hide");
   });
 
   // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#mainNav',
+  $("body").scrollspy({
+    target: "#mainNav",
     offset: 48
   });
 
@@ -37,34 +37,34 @@
 
   // Scroll reveal calls
   window.sr = ScrollReveal();
-  sr.reveal('.sr-icons', {
+  sr.reveal(".sr-icons", {
     duration: 600,
     scale: 0.3,
-    distance: '0px'
+    distance: "0px"
   }, 200);
-  sr.reveal('.sr-button', {
+  sr.reveal(".sr-button", {
     duration: 1000,
     delay: 200
   });
-  sr.reveal('.sr-contact', {
+  sr.reveal(".sr-contact", {
     duration: 600,
     scale: 0.3,
-    distance: '0px'
+    distance: "0px"
   }, 300);
 
   // Magnific popup calls
-  $('.popup-gallery').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    tLoading: 'Loading image #%curr%...',
-    mainClass: 'mfp-img-mobile',
+  $(".popup-gallery").magnificPopup({
+    delegate: "a",
+    type: "image",
+    tLoading: "Loading image #%curr%...",
+    mainClass: "mfp-img-mobile",
     gallery: {
       enabled: true,
       navigateByImgClick: true,
       preload: [0, 1]
     },
     image: {
-      tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+      tError: "<a href=\"%url%\">The image #%curr%</a> could not be loaded."
     }
   });
 
