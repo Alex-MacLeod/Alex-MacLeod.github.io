@@ -26,7 +26,7 @@ gulp.task("sass", function() {
     .pipe(gulp.dest("css"))
     .pipe(browserSync.reload({
       stream: true
-    }))
+    }));
 });
 
 // Minify compiled CSS

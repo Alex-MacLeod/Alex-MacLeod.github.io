@@ -2,7 +2,7 @@
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+  $("a.js-scroll-trigger[href*=\"#\"]:not([href=\"#\"])").click(function() {
     if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") && location.hostname === this.hostname) {
       let target = $(this.hash);
       target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
@@ -64,7 +64,7 @@
       preload: [0, 1]
     },
     image: {
-      tError: "<a href="%url%">The image #%curr%</a> could not be loaded."
+      tError: "<a href=\"%url%\">The image #%curr%</a> could not be loaded."
     }
   });
 
