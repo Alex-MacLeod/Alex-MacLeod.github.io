@@ -2,10 +2,10 @@
 
 (function() {
 
-    var ProjectsController =  function() {
+    let ProjectsController =  function() {
         //var vm = this;
 
     };
 
-    alexApp.controller('projectsController', [ProjectsController]);
+    alexApp.controller("projectsController", [ProjectsController]);
 }());

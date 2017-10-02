@@ -2,9 +2,9 @@
 
 (function() {
 
-    var AboutController =  function() {
+    let AboutController =  function() {
 
     };
 
-    alexApp.controller('aboutController', [AboutController]);
+    alexApp.controller("aboutController", [AboutController]);
 }());

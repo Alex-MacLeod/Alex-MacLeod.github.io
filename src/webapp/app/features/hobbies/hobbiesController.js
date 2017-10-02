@@ -2,10 +2,10 @@
 
 (function() {
 
-    var BobbiesController =  function() {
+    let BobbiesController =  function() {
         //var vm = this;
 
     };
 
-    alexApp.controller('hobbiesController', [BobbiesController]);
+    alexApp.controller("hobbiesController", [BobbiesController]);
 }());

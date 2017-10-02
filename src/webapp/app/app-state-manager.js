@@ -23,6 +23,6 @@
         }).state("projects", {
             url: "/myprojects",
             templateUrl: "app/features/projects/projects.html"
-        })
+        });
     });
 }());
