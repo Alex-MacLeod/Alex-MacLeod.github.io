@@ -1,1 +1,0 @@
-let alexApp = angular.module("AlexWeb",["ui.router"]);
