@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { CareerComponent } from './career/career.component';
 import { ContactComponent } from './contact/contact.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HomeComponent } from './home/home.component';
 import { OutsideTheOfficeComponent } from './outside-the-office/outside-the-office.component';
+import { ContactService } from './contact.service';
 
 
 @NgModule({
@@ -18,13 +21,16 @@ import { OutsideTheOfficeComponent } from './outside-the-office/outside-the-offi
     ContactComponent,
     PortfolioComponent,
     HomeComponent,
-    OutsideTheOfficeComponent
+    OutsideTheOfficeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AlertModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
