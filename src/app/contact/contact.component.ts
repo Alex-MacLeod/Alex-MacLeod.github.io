@@ -39,8 +39,10 @@ export class ContactComponent {
   onSubmit(): void {
     this.message = this.prepareSendMessage();
     delete this.message.honeypot;
-    this.contactService.sendMessage(this.message).subscribe((result) => this.sent === !!result)
-    this.submitted = true;
+    this.contactService.sendMessage(this.message).then((res) => {
+      this.sent = true;
+      this.submitted = true;
+    }).catch((error) => console.error(`Operation failed: ${error.message}`))
     this.reset();
   }
 
@@ -49,7 +51,7 @@ export class ContactComponent {
     const preparedMessage = {
       sender: formModel.name as string,
       subject: formModel.subject as string,
-      phoneNumber: formModel.phone as number,
+      phone: formModel.phone as number,
       email: formModel.email as string,
       message: formModel.message as string,
       honeypot: formModel.honeypot as string
