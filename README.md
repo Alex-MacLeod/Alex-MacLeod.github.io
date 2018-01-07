@@ -14,4 +14,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # License
 
-This project is released under the MIT License, details are in the LICENSE.md file.
+This project is released under the MIT License, details are in the LICENSE file.
