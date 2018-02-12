@@ -1,9 +1,18 @@
 <!-- Contact page -->
 <div class="container">
-	<div>
-		<h1 id="contactHeading">Contact me</h1>
-		<hr>
-	</div>
+
+	<!-- Page Heading/Breadcrumbs -->
+    <ol class="breadcrumb">
+    	<li class="breadcrumb-item">
+        	<a routerLink="/home">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Contact</li>
+	</ol>
+	<h1 id="contactHeading" class="mt-4 mb-3">Contact</h1>
+	<p>Send a message to Alex</p>
+	<hr>
+
+	<!-- Submission messages -->
 	<div [hidden]="!submitted">
 		<div [hidden]="sent">
 			<alert id="contact-error-message" type="danger">
@@ -18,55 +27,66 @@
 			<button id="contact-success-to-homepage" class="btn btn-primary" routerLink="/home">Return to homepage</button>
 		</div>
 	</div>
-	<div [hidden]="submitted">
-		<p>Feel free to send me a message if you have any questions</p>
-		<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate name="sendMessage" id="contactForm">
-			<div class="form-group">
-				<label for="name" class="center-block">Full Name:
-					<input type="text" id="name" class="form-control" required formControlName="name" name="name">
-				</label>
-				<div [hidden]="contactForm.get('name').status === 'VALID' || contactForm.get('name').pristine" class="alert alert-danger">
-					Name is required
-				</div>
-			</div>
-			<div class="form-group">
-					<label for="subject" class="center-block">Subject:
-						<select class="form-control" id="power" required formControlName="subject">
-							<option *ngFor="let subj of subjects" [value]="subj">{{subj}}</option>
-						</select>
-					</label>
-					<div [hidden]="contactForm.get('subject').status === 'VALID' || contactForm.get('subject').pristine" class="alert alert-danger">
-						Please choose a subject from the list
+
+	<div class="row">
+
+		<!-- Contact form -->
+        <div class="col-lg-8 mb-4">
+			<div [hidden]="submitted">
+				<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate name="sendMessage" id="contactForm">
+					<div class="form-group">
+						<label for="name" class="center-block">Full Name:
+							<input type="text" id="name" class="form-control" required formControlName="name" name="name">
+						</label>
+						<div [hidden]="contactForm.get('name').status === 'VALID' || contactForm.get('name').pristine" class="alert alert-danger">
+							Name is required
+						</div>
 					</div>
+					<div class="form-group">
+							<label for="subject" class="center-block">Subject:
+								<select class="form-control" id="subject" required formControlName="subject" name="subject">
+									<option *ngFor="let subj of subjects" [value]="subj">{{subj}}</option>
+								</select>
+							</label>
+							<div [hidden]="contactForm.get('subject').status === 'VALID' || contactForm.get('subject').pristine" class="alert alert-danger">
+								Please choose a subject from the list
+							</div>
+					</div>
+					<div class="form-group">
+						<label for="mobile" class="center-block">Mobile Number (optional):
+							<input type="tel" id="phone" class="form-control" formControlName="phone" name="phone">
+						</label>
+						<div [hidden]="contactForm.get('phone').status === 'VALID' || contactForm.get('phone').pristine" class="alert alert-danger">
+							If you would like to give your number, please enter a valid UK mobile number
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="center-block">Email Address:
+							<input type="email" id="email" class="form-control" required formControlName="email" name="email">
+						</label>
+						<div [hidden]="contactForm.get('email').status === 'VALID' || contactForm.get('email').pristine" class="alert alert-danger">
+							Please enter a valid email address
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="message" class="center-block">Message:
+							<textarea id="message" class="form-control" required formControlName="message" name="message" rows="10" cols="100"
+							maxlength="999" style="resize:none"></textarea>
+						</label>
+					</div>
+					<div class="form-group" [hidden]=true>
+						<label for="honeypot" class="center-block">Honeypot:
+							<input type="text" id="honeypot" class="form-control" formControlName="honeypot" name="honeypot">
+						</label>
+					</div>
+					<button type="submit" [disabled]="contactForm.status === 'INVALID'" class="btn btn-success">Send Message</button>
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="mobile" class="center-block">Mobile Number (optional):
-					<input type="tel" id="phone" class="form-control" formControlName="phone" name="phone">
-				</label>
-				<div [hidden]="contactForm.get('phone').status === 'VALID' || contactForm.get('phone').pristine" class="alert alert-danger">
-					If you would like to give your number, please enter a valid UK mobile number
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email" class="center-block">Email Address:
-					<input type="email" id="email" class="form-control" required formControlName="email" name="email">
-				</label>
-				<div [hidden]="contactForm.get('email').status === 'VALID' || contactForm.get('email').pristine" class="alert alert-danger">
-					Please enter a valid email address
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="message" class="center-block">Message:
-					<textarea id="message" required formControlName="message" name="message" rows="10" cols="100"
-					 maxlength="999" style="resize:none"></textarea>
-				</label>
-			</div>
-			<div class="form-group" [hidden]=true>
-				<label for="honeypot" class="center-block">Honeypot:
-					<input type="text" id="honeypot" class="form-control" formControlName="honeypot" name="honeypot">
-				</label>
-			</div>
-			<button type="submit" [disabled]="contactForm.status === 'INVALID'" class="btn btn-success">Send Message</button>
-		</form>
+		</div>
+
+		<!-- How the form works -->
+		<div class="col-lg-4 mb-4">
+			<p>TEXT</p>
+		</div>
 	</div>
 </div>
