@@ -12,9 +12,9 @@ import { ContactService } from '../contact.service';
 export class ContactComponent {
   @Input() message: Message;
   contactForm: FormGroup;
-  submitted = false;
-  sent =  false;
-  subjects = ['Requesting further information', 'Personal Greeting', 'Website is broken', 'Other'];
+  submitted: boolean = false;
+  sent: boolean = false;
+  subjects: Array<string> = ['Requesting further information', 'Personal Greeting', 'Website is broken', 'Other'];
 	
 	constructor(
     private fb: FormBuilder,
