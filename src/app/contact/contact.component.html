@@ -43,14 +43,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-							<label for="subject" class="center-block">Subject:
-								<select class="form-control" id="subject" required formControlName="subject" name="subject">
-									<option *ngFor="let subj of subjects" [value]="subj">{{subj}}</option>
-								</select>
-							</label>
-							<div [hidden]="contactForm.get('subject').status === 'VALID' || contactForm.get('subject').pristine" class="alert alert-danger">
-								Please choose a subject from the list
-							</div>
+						<label for="subject" class="center-block">Subject:
+							<select class="form-control" id="subject" required formControlName="subject" name="subject">
+								<option *ngFor="let subj of subjects" [value]="subj">{{subj}}</option>
+							</select>
+						</label>
+						<div [hidden]="contactForm.get('subject').status === 'VALID' || contactForm.get('subject').pristine" class="alert alert-danger">
+							Please choose a subject from the list
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="mobile" class="center-block">Mobile Number (optional):

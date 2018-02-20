@@ -32,10 +32,6 @@ export class ContactComponent {
     });
   }
 
-  reset(): void {
-    this.contactForm.reset();
-  }
-
   onSubmit(): void {
     this.message = this.prepareSendMessage();
     delete this.message.honeypot;
@@ -44,6 +40,10 @@ export class ContactComponent {
       this.submitted = true;
     }).catch((error) => console.error(`Operation failed: ${error.message}`))
     this.reset();
+  }
+
+  reset(): void {
+    this.contactForm.reset();
   }
 
   prepareSendMessage(): Message {
