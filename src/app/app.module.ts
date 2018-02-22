@@ -12,6 +12,9 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HomeComponent } from './home/home.component';
 import { OutsideTheOfficeComponent } from './outside-the-office/outside-the-office.component';
 import { ContactService } from './contact.service';
+import { EducationComponent } from './education/education.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { SkillsComponent } from './skills/skills.component';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { ContactService } from './contact.service';
     PortfolioComponent,
     HomeComponent,
     OutsideTheOfficeComponent,
+    EducationComponent,
+    ExperienceComponent,
+    SkillsComponent,
   ],
   imports: [
     BrowserModule,
