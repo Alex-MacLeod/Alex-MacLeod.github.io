@@ -15,6 +15,8 @@ import { ContactService } from './contact.service';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { SkillsComponent } from './skills/skills.component';
+import { HangmanComponent } from './hangman/hangman.component';
+import { HangmanService } from './hangman.service';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { SkillsComponent } from './skills/skills.component';
     EducationComponent,
     ExperienceComponent,
     SkillsComponent,
+    HangmanComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,10 @@ import { SkillsComponent } from './skills/skills.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ContactService],
+  providers: [
+    ContactService,
+    HangmanService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
