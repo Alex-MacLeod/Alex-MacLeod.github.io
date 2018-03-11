@@ -10,7 +10,7 @@ import { CareerComponent } from './career/career.component';
 import { ContactComponent } from './contact/contact.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HomeComponent } from './home/home.component';
-import { OutsideTheOfficeComponent } from './outside-the-office/outside-the-office.component';
+import { InterestsComponent } from './interests/interests.component';
 import { ContactService } from './contact.service';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
@@ -26,7 +26,7 @@ import { HangmanService } from './hangman.service';
     ContactComponent,
     PortfolioComponent,
     HomeComponent,
-    OutsideTheOfficeComponent,
+    InterestsComponent,
     EducationComponent,
     ExperienceComponent,
     SkillsComponent,

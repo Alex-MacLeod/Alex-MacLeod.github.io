@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OutsideTheOfficeComponent } from './outside-the-office.component';
+import { InterestsComponent } from './interests.component';
 
 describe('OutsideTheOfficeComponent', () => {
-  let component: OutsideTheOfficeComponent;
-  let fixture: ComponentFixture<OutsideTheOfficeComponent>;
+  let component: InterestsComponent;
+  let fixture: ComponentFixture<InterestsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OutsideTheOfficeComponent ]
+      declarations: [ InterestsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OutsideTheOfficeComponent);
+    fixture = TestBed.createComponent(InterestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
