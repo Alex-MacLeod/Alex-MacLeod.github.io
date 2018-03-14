@@ -38,11 +38,10 @@ export class ContactComponent {
     this.contactService.sendMessage(this.message).then((res) => {
       this.sent = true;
       this.submitted = true;
-    }).catch((error) => console.error(`Operation failed: ${error.message}`))
-    this.reset();
-  }
-
-  reset(): void {
+    }).catch((error) => {
+      this.submitted = true;
+      console.error(`Operation failed: ${error.message}`)
+    })
     this.contactForm.reset();
   }
 
