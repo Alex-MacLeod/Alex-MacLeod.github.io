@@ -1,10 +1,10 @@
 export class Message {
     constructor(
-        protected sender: string,
-        protected subject: string,
-        protected phone: number,
-        protected email: string,
-        protected message: string,
-        protected honeypot?: string
-      ) {  }    
+        public sender: string,
+        public subject: string,
+        public phone: number,
+        public email: string,
+        public message: string,
+        public honeypot?: string
+      ) {  }
 }

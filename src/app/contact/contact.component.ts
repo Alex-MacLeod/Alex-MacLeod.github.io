@@ -33,7 +33,7 @@ export class ContactComponent {
   }
 
   onSubmit(): void {
-    this.message = this.prepareSendMessage();
+    this.message = this.buildMessage();
     delete this.message.honeypot;
     this.contactService.sendMessage(this.message).then((res) => {
       this.sent = true;
@@ -45,9 +45,9 @@ export class ContactComponent {
     this.contactForm.reset();
   }
 
-  prepareSendMessage(): Message {
-    const formModel = this.contactForm.value;
-    const preparedMessage = {
+  buildMessage(): Message {
+    const formModel: any = this.contactForm.value;
+    const preparedMessage: Message = {
       sender: formModel.name as string,
       subject: formModel.subject as string,
       phone: formModel.phone as number,
