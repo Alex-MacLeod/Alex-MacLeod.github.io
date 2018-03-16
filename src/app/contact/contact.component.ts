@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Message }    from '../message';
@@ -10,11 +10,11 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  @Input() message: Message;
-  contactForm: FormGroup;
-  submitted: boolean = false;
-  sent: boolean = false;
-  subjects: Array<string> = ['Requesting further information', 'Personal Greeting', 'Website is broken', 'Other'];
+  private message: Message;
+  private contactForm: FormGroup;
+  private submitted: boolean = false;
+  private sent: boolean = false;
+  private subjects: Array<string> = ['Requesting further information', 'Personal Greeting', 'Website is broken', 'Other'];
 	
 	constructor(
     private fb: FormBuilder,
