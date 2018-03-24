@@ -12,16 +12,16 @@ const httpOptions = {
 @Injectable()
 export class ContactService {
 
+    private googleScript: string = "https://script.google.com/macros/s/AKfycbzCVcDrHI_yn2LPjr45k7r-E5Sw6PKTVph8jmNJTz2FtHAGkNne/exec";
+
     constructor(
         private http: HttpClient
     ) { }
-
-    private googleScript: string = "https://script.google.com/macros/s/AKfycbzCVcDrHI_yn2LPjr45k7r-E5Sw6PKTVph8jmNJTz2FtHAGkNne/exec";
     
     sendMessage(message: Message): Promise<Response> {
-        let encoded = Object.keys(message)
+        const encodedMessage: string = Object.keys(message)
             .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(message[k]))
             .join("&");
-        return this.http.post<Response>(this.googleScript, encoded, httpOptions).toPromise()
+        return this.http.post<Response>(this.googleScript, encodedMessage, httpOptions).toPromise();
     }
 }
