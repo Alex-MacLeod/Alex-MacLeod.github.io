@@ -49,8 +49,8 @@ export class HangmanComponent implements OnInit {
 
     setTheme(theme: string): string {
         if (theme === "Random") {
-            this.gameThemes.splice(this.gameThemes.indexOf("Random"),1)
-            return this.randomElementFrom(this.gameThemes);
+            let randomThemes: Array<string> = this.gameThemes.filter((theme) => theme !== "Random");
+            return this.randomElementFrom(randomThemes);
         } else {
             return theme;
         }
