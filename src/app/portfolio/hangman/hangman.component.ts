@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { HangmanStats } from '../hangmanstats';
-import { HangmanService } from '../hangman.service';
+import { HangmanStats } from './hangmanstats';
+import { HangmanService } from './hangman.service';
 
 @Component({
     selector: 'app-hangman',

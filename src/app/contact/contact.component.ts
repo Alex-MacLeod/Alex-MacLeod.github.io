@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Message }    from '../message';
-import { ContactService } from '../contact.service';
+import { Message }    from './message';
+import { ContactService } from './contact.service';
 
 @Component({
     selector: 'app-contact',
