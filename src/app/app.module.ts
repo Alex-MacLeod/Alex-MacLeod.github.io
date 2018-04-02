@@ -9,19 +9,28 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CareerComponent } from './career/career.component';
+import { EducationComponent } from './career/education/education.component';
+import { ExperienceComponent } from './career/experience/experience.component';
+import { SkillsComponent } from './career/skills/skills.component';
+
 import { ContactComponent } from './contact/contact.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
+
 import { HomeComponent } from './home/home.component';
+
 import { InterestsComponent } from './interests/interests.component';
-import { EducationComponent } from './education/education.component';
-import { ExperienceComponent } from './experience/experience.component';
-import { SkillsComponent } from './skills/skills.component';
-import { HangmanComponent } from './hangman/hangman.component';
+import { PhotographyComponent } from './interests/photography/photography.component';
+import { FantasyfootballComponent } from './interests/fantasyfootball/fantasyfootball.component';
+import { AnimeComponent } from './interests/anime/anime.component';
+import { StrategygamesComponent } from './interests/strategygames/strategygames.component';
+import { WalkingComponent } from './interests/walking/walking.component';
+import { PoliticsnewsComponent } from './interests/politicsnews/politicsnews.component';
 
-import { ContactService } from './contact.service';
-import { HangmanService } from './hangman.service';
-import { WordListsService }  from './wordlists.service';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { HangmanComponent } from './portfolio/hangman/hangman.component';
 
+import { ContactService } from './contact/contact.service';
+import { HangmanService } from './portfolio/hangman/hangman.service';
+import { WordListsService }  from './portfolio/hangman/wordlists.service';
 
 @NgModule({
   declarations: [
@@ -30,11 +39,17 @@ import { WordListsService }  from './wordlists.service';
     ContactComponent,
     PortfolioComponent,
     HomeComponent,
-    InterestsComponent,
     EducationComponent,
     ExperienceComponent,
     SkillsComponent,
     HangmanComponent,
+    InterestsComponent,
+    PhotographyComponent,
+    FantasyfootballComponent,
+    AnimeComponent,
+    StrategygamesComponent,
+    WalkingComponent,
+    PoliticsnewsComponent,
   ],
   imports: [
     BrowserModule,
