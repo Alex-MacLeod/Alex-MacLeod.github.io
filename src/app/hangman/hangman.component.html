@@ -1,3 +1,65 @@
-<p>
-  hangman works!
-</p>
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 id="hangmanHeading" class="mt-4 mb-3">Hangman</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/home">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/portfolio">Portfolio</a>
+        </li>
+        <li class="breadcrumb-item active">Hangman</li>
+    </ol>
+
+    <div *ngIf = "!gameWord; else gameBlock">
+        <!-- Description -->
+        <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+        </div>
+
+        <hr>
+
+        <!-- Choose theme -->
+        <form [formGroup]="chooseTheme" (ngSubmit)="startGame()" novalidate id="chooseTheme">
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <label for="gameThemes" class="center-block">Choose theme</label>
+                    <select class="form-control" required formControlName="theme" id="theme">
+                        <option *ngFor="let theme of gameThemes" [value]="theme">{{theme}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="submit" [disabled]="chooseTheme.status === 'INVALID' || !wordLists" class="btn btn-success">Start new game!</button>
+            </div>
+        </form>
+
+        <hr>
+    </div>
+
+    <!-- Game -->
+    <ng-template #gameBlock>
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <span>{{letters.join(" ")}}</span>
+                <span>Tries left = {{6 - mistakes}}</span>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div *ngFor="let letter of alphabet">
+                    <button type="button" class="btn" (click)="guessLetter(letter)" value="letter">{{letter}}</button>
+                </div>
+                <input/>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- Stats -->
+    <div></div>
+
+</div>

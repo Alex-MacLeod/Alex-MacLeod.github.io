@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ import { HangmanComponent } from './hangman/hangman.component';
 
 import { ContactService } from './contact.service';
 import { HangmanService } from './hangman.service';
+import { WordListsService }  from './wordlists.service';
 
 
 @NgModule({
@@ -40,6 +42,9 @@ import { HangmanService } from './hangman.service';
     AlertModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      WordListsService, { dataEncapsulation: false }
+    )
   ],
   providers: [
     ContactService,
