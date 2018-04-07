@@ -4,6 +4,7 @@
 - [Credits](#credits)
   - [Design](#design)
   - [Contact form](#contact-form)
+    [Promise timeout](#promise-timeout)
   - [Education](#education)
   - [Acknowledgments](#acknowledgments)
 - [Angular](#angular)
@@ -29,6 +30,10 @@ Design based on Modern Business Template by [Start Bootstrap](https://startboots
 ## Contact form
 
 The contact form for this website uses the Google script from the [example HTML form using a Google script](https://github.com/dwyl/html-form-send-email-via-google-script-without-server) by [dwyl](https://dwyl.com/) ([LICENSE](https://github.com/dwyl/html-form-send-email-via-google-script-without-server/blob/master/LICENSE)). Only the Google script (amended only to direct emails to me), the code required to encode the message in the correct format (edited to take advantage of TypeScript functionality, the original being JavaScript), and a copy of the Excel file used to log messages have been used.
+
+## Promise timeout
+
+The promises used in this website have timeouts. This is thanks to a method in `src/app/app.service.ts`, which allows me to configure any promise with a custom timeout. This method is originally from the blog [News From the Front](https://italonascimento.github.io/).
 
 ## Education
 
