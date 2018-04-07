@@ -23,43 +23,72 @@
         <hr>
 
         <!-- Choose theme -->
-        <form [formGroup]="chooseTheme" (ngSubmit)="startGame()" novalidate id="chooseTheme">
-            <div class="row">
-                <div class="col-lg-8 mb-4">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
+        <div *ngIf = "!gameError; else errorBlock">
+            <form [formGroup]="chooseTheme" (ngSubmit)="startGame()" novalidate id="chooseTheme">
+                <div class="row">
+                    <div class="col-lg-8 mb-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <label for="gameThemes" class="center-block">Choose theme</label>
+                        <select class="form-control" required formControlName="theme" id="theme">
+                            <option *ngFor="let theme of gameThemes" [value]="theme">{{theme}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <label for="gameThemes" class="center-block">Choose theme</label>
-                    <select class="form-control" required formControlName="theme" id="theme">
-                        <option *ngFor="let theme of gameThemes" [value]="theme">{{theme}}</option>
-                    </select>
+                <div>
+                    <button type="submit" [disabled]="chooseTheme.status === 'INVALID' || !wordLists" class="btn btn-success">Start new game!</button>
                 </div>
-            </div>
-            <div>
-                <button type="submit" [disabled]="chooseTheme.status === 'INVALID' || !wordLists" class="btn btn-success">Start new game!</button>
-            </div>
-        </form>
+            </form>
+        </div>
+
+        <!-- Error message -->
+        <ng-template #errorBlock>
+            <alert id="hangman-error-message" type="danger">
+                <strong>Oh dear!</strong> There was an error trying to start the game. Please try again later.
+            </alert>
+            <button id="hangman-error-tohomepage" class="btn btn-primary" routerLink="/home">Return to homepage</button>
+        </ng-template>
 
         <hr>
     </div>
 
     <!-- Game -->
     <ng-template #gameBlock>
+
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <span>{{letters.join(" ")}}</span>
+                <!--TODO: replace mistakes with hangman drawings -->
                 <span>Tries left = {{6 - mistakes}}</span>
             </div>
             <div class="col-lg-4 mb-4">
+                <!--TODO: group up buttons -->
+                <!--TODO: disable buttons when clicked-->
+                <!--TODO: tick/cross buttons when right/wrong-->
                 <div *ngFor="let letter of alphabet">
                     <button type="button" class="btn" (click)="guessLetter(letter)" value="letter">{{letter}}</button>
                 </div>
                 <input/>
             </div>
         </div>
+
     </ng-template>
 
+    <!-- Game Ended -->
+    <div>
+        <!--TODO: pop-up when game is won/lost -->
+        <!--TODO: new game button -->
+        <!--TODO: new game new theme select -->
+        <!--TODO: new game new theme button -->
+        <!--TODO: return to homepage button -->
+        <!--TODO: return to portfolio button -->
+    </div>
+
+    <!--TODO: see stats button -->
     <!-- Stats -->
-    <div></div>
+    <div>
+        <!--TODO: stats table -->
+    </div>
 
 </div>

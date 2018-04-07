@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-
 @Injectable()
 export class HangmanService {
 
@@ -12,8 +10,8 @@ export class HangmanService {
         private http: HttpClient
     ) { }
 
-    loadWordLists(): Observable<any[]> {
-        return this.http.get<any[]>(this.wordListsUrl);
+    getWordLists(): Promise<any[]> {
+        return this.http.get<any[]>(this.wordListsUrl).toPromise();
     }
 
 }

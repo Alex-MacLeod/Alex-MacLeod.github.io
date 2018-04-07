@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HangmanStats } from './hangmanstats';
+import { CommonService } from '../../app.service';
 import { HangmanService } from './hangman.service';
 
 @Component({
@@ -18,18 +19,24 @@ export class HangmanComponent implements OnInit {
     private alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     private letters: Array<string> = [];
     private mistakes: number = 0;
+    private gameError: boolean = true;
 
     constructor(
         private formbuilder: FormBuilder,
+        private cs: CommonService,
         private hangmanService: HangmanService
     ) { }
 
     ngOnInit(): void {
-        this.hangmanService.loadWordLists().subscribe(wordLists => {
+        this.cs.timeoutPromise(this.hangmanService.getWordLists(), 500).then(wordLists => {
             this.wordLists = wordLists;
             console.log(this.wordLists);
+        }).catch((error) => {
+            console.error(`Word list load failed: ${error}`);
+            this.gameError = true;
         });
         this.createThemeForm();
+        this.gameError = false;
     }
 
     createThemeForm(): void {
@@ -39,21 +46,25 @@ export class HangmanComponent implements OnInit {
     }
 
     startGame(): void {
-        const theme = this.setTheme(this.chooseTheme.value.theme);
-        this.gameWord = this.getGameWord(theme).toUpperCase();
-        console.log(this.gameWord);
-        for (let i = 0; i < this.gameWord.length; i++) {
-            this.letters[i] = "_";
+        this.gameError = true;
+        try {
+            const theme = this.setTheme(this.chooseTheme.value.theme);
+            this.gameWord = this.getGameWord(theme).toUpperCase();
+        } catch (error) {
+            console.error(`Game start failed: ${error}`);
+        }
+        if (!!this.gameWord) {
+            this.gameError = false;
+            console.log(this.gameWord);
+            for (let i = 0; i < this.gameWord.length; i++) {
+                this.letters[i] = "_";
+            }
         }
     }
 
     setTheme(theme: string): string {
-        if (theme === "Random") {
-            let randomThemes: Array<string> = this.gameThemes.filter((theme) => theme !== "Random");
-            return this.randomElementFrom(randomThemes);
-        } else {
-            return theme;
-        }
+        let randomThemes: Array<string> = this.gameThemes.filter((theme) => theme !== "Random");
+        return theme === "Random" ? this.randomElementFrom(randomThemes) : theme;
     }
 
     getGameWord(theme: string): string {
