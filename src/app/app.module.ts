@@ -6,6 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -61,6 +62,7 @@ import { WordListsService }  from './portfolio/hangman/wordlists.service';
     HttpClientModule,
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
+    PaginationModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       WordListsService, { dataEncapsulation: false }
     )
