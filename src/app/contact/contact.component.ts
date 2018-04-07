@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Message }    from './message';
+import { CommonService } from '../app.service';
 import { ContactService } from './contact.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class ContactComponent {
     
     constructor(
         private formbuilder: FormBuilder,
+        private cs: CommonService,
         private contactService: ContactService
     ) { this.createForm(); }
   
@@ -35,12 +37,12 @@ export class ContactComponent {
     onSubmit(): void {
         this.message = this.buildMessage();
         delete this.message.honeypot;
-        this.contactService.sendMessage(this.message).then((res) => {
+        this.cs.timeoutPromise(this.contactService.sendMessage(this.message), 1000).then((res) => {
             this.sent = true;
             this.submitted = true;
         }).catch((error) => {
             this.submitted = true;
-            console.error(`Operation failed: ${error.message}`)
+            console.error(`Send message failed: ${error}`)
         })
         this.contactForm.reset();
     }
