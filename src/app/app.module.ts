@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AlertModule } from 'ngx-bootstrap/alert';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -55,9 +57,10 @@ import { WordListsService }  from './portfolio/hangman/wordlists.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AlertModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    AlertModule.forRoot(),
+    CarouselModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       WordListsService, { dataEncapsulation: false }
     )
