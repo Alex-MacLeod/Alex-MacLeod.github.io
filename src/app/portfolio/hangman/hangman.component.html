@@ -53,14 +53,33 @@
         <hr>
     </div>
 
-    <!-- Game -->
     <ng-template #gameBlock>
 
+        <!-- Stats -->
+        <div [collapse]="hideStats">
+            <table>
+                <thead>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Games played</th>
+                    <th>Win percentage</th>
+                </thead>
+                <tbody>
+                    <td>{{gameStats.getWins()}}</td>
+                    <td>{{gameStats.getLosses()}}</td>
+                    <td>{{gameStats.getGamesPlayed()}}</td>
+                    <td>{{gameStats.getWinPercentage()}}</td>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Game -->
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <span>{{letters.join(" ")}}</span>
                 <!--TODO: replace mistakes with hangman drawings -->
                 <span>Tries left = {{6 - mistakes}}</span>
+                <button class="btn btn-primary" (click)="hideStats = !hideStats">Show stats</button>
             </div>
             <div class="col-lg-4 mb-4">
                 <!--TODO: group up buttons -->
@@ -69,7 +88,13 @@
                 <div *ngFor="let letter of alphabet">
                     <button type="button" class="btn" (click)="guessLetter(letter)" value="letter">{{letter}}</button>
                 </div>
-                <input/>
+                <form [formGroup]="guessGameWord" (ngSubmit)="guessWord()" novalidate id="guess-word">
+                    <div class="form-group">
+                        <label for="guessWord" class="center-block">Guess word:</label>
+                        <input type="text" id="guessWord" class="form-control" required formControlName="word" name="word">
+                    </div>
+                    <button type="submit" [disabled]="guessGameWord.status === 'INVALID'" class="btn btn-success">Guess</button>
+                </form>
             </div>
         </div>
 
@@ -83,12 +108,6 @@
         <!--TODO: new game new theme button -->
         <!--TODO: return to homepage button -->
         <!--TODO: return to portfolio button -->
-    </div>
-
-    <!--TODO: see stats button -->
-    <!-- Stats -->
-    <div>
-        <!--TODO: stats table -->
     </div>
 
 </div>

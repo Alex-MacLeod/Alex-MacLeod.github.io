@@ -12,8 +12,10 @@ import { HangmanService } from './hangman.service';
 })
 export class HangmanComponent implements OnInit {
     private chooseTheme: FormGroup;
+    private guessGameWord: FormGroup;
     private gameThemes: Array<string> = ["Anime", "Football", "Singapore", "Software Development", "UK Politics", "Random", "All"];
     private gameStats: HangmanStats = new HangmanStats;
+    private hideStats: boolean = true;
     private gameWord: string | undefined;
     private wordLists: any[];
     private alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -35,13 +37,16 @@ export class HangmanComponent implements OnInit {
             console.error(`Word list load failed: ${error}`);
             this.gameError = true;
         });
-        this.createThemeForm();
+        this.createForms();
         this.gameError = false;
     }
 
-    createThemeForm(): void {
+    createForms(): void {
         this.chooseTheme = this.formbuilder.group({
             theme: ['', Validators.required ]
+        });
+        this.guessGameWord = this.formbuilder.group({
+            word: ['', Validators.required ]
         });
     }
 
@@ -102,7 +107,8 @@ export class HangmanComponent implements OnInit {
         }
     }
 
-    guessWord(word: string): void {
+    guessWord(): void {
+        let word: string = this.guessGameWord.value.word;
         console.log(word);
         if (word.length>0) {
             word = word.toUpperCase();
@@ -143,6 +149,7 @@ export class HangmanComponent implements OnInit {
         this.gameWord = undefined;
         this.letters = [];
         this.mistakes = 0;
+        this.hideStats = true;
     }
 
 }
