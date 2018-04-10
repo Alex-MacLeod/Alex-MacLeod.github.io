@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Message }    from './message';
+import { Message } from './message';
 import { CommonService } from '../app.service';
 import { ContactService } from './contact.service';
 
@@ -13,21 +13,21 @@ import { ContactService } from './contact.service';
 export class ContactComponent {
     private message: Message;
     private contactForm: FormGroup;
-    private submitted: boolean = false;
-    private sent: boolean = false;
+    private submitted = false;
+    private sent = false;
     private subjects: Array<string> = ['Requesting further information', 'Personal Greeting', 'Website is broken', 'Other'];
-    
+
     constructor(
         private formbuilder: FormBuilder,
         private cs: CommonService,
         private contactService: ContactService
     ) { this.createForm(); }
-  
+
     createForm(): void {
         this.contactForm = this.formbuilder.group({
             name: ['', Validators.required ],
             subject: ['', Validators.required ],
-            phone: ['', Validators.pattern("^07([\\d]{3})[(\\D\\s)]?[\\d]{3}[(\\D\\s)]?[\\d]{3}$") ],
+            phone: ['', Validators.pattern('^07([\\d]{3})[(\\D\\s)]?[\\d]{3}[(\\D\\s)]?[\\d]{3}$') ],
             email: ['', [Validators.required, Validators.email] ],
             message: ['', Validators.required ],
             honeypot: ['', Validators.maxLength(0) ]
@@ -42,8 +42,8 @@ export class ContactComponent {
             this.submitted = true;
         }).catch((error) => {
             this.submitted = true;
-            console.error(`Send message failed: ${error}`)
-        })
+            console.error(`Send message failed: ${error}`);
+        });
         this.contactForm.reset();
     }
 
@@ -56,7 +56,7 @@ export class ContactComponent {
             email: formModel.email as string,
             message: formModel.message as string,
             honeypot: formModel.honeypot as string
-        }
+        };
       return preparedMessage;
     }
 }

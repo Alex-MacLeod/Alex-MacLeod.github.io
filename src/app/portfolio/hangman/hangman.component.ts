@@ -13,15 +13,16 @@ import { HangmanService } from './hangman.service';
 export class HangmanComponent implements OnInit {
     private chooseTheme: FormGroup;
     private guessGameWord: FormGroup;
-    private gameThemes: Array<string> = ["Anime", "Football", "Singapore", "Software Development", "UK Politics", "Random", "All"];
+    private gameThemes: Array<string> = ['Anime', 'Football', 'Singapore', 'Software Development', 'UK Politics', 'Random', 'All'];
     private gameStats: HangmanStats = new HangmanStats;
-    private hideStats: boolean = true;
+    private hideStats = true;
     private gameWord: string | undefined;
     private wordLists: any[];
-    private alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    private letters: Array<string> = [];
-    private mistakes: number = 0;
-    private gameError: boolean = true;
+    private alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    private letters = [];
+    private mistakes = 0;
+    private gameError = true;
 
     constructor(
         private formbuilder: FormBuilder,
@@ -62,19 +63,19 @@ export class HangmanComponent implements OnInit {
             this.gameError = false;
             console.log(this.gameWord);
             for (let i = 0; i < this.gameWord.length; i++) {
-                this.letters[i] = "_";
+                this.letters[i] = '_';
             }
         }
     }
 
     setTheme(theme: string): string {
-        let randomThemes: Array<string> = this.gameThemes.filter((theme) => theme !== "Random");
-        return theme === "Random" ? this.randomElementFrom(randomThemes) : theme;
+        const randomThemes: Array<string> = this.gameThemes.filter((thm) => thm !== 'Random');
+        return theme === 'Random' ? this.randomElementFrom(randomThemes) : theme;
     }
 
     getGameWord(theme: string): string {
         let themeWordList = [];
-        if (theme === "All") {
+        if (theme === 'All') {
             this.wordLists.forEach((list) => themeWordList = themeWordList.concat(list.words));
         } else {
             themeWordList = this.wordLists.find((list) => list.theme === theme).words;
@@ -84,25 +85,25 @@ export class HangmanComponent implements OnInit {
     }
 
     randomElementFrom(array: Array<any>): any {
-        const randomIndex = Math.floor(Math.random()*(array.length));
+        const randomIndex = Math.floor(Math.random() * (array.length));
         return array[randomIndex];
     }
 
     guessLetter(letter: string): void {
         console.log(letter);
         if (this.gameWord.includes(letter)) {
-            let index: number = this.gameWord.indexOf(letter);
+            const index: number = this.gameWord.indexOf(letter);
             for (let k: number = index; k < this.gameWord.length; k++) {
                 if (this.gameWord.charAt(k) === letter) {
                     this.letters[k] = letter;
                 }
             }
-            //TODO: button disabled, tick
-            if (this.letters.join("") === this.gameWord) {
+            // TODO: button disabled, tick
+            if (this.letters.join('') === this.gameWord) {
                 this.endGame();
             }
         } else {
-            //TODO: button disabled, cross
+            // TODO: button disabled, cross
             this.madeMistake();
         }
     }
@@ -110,7 +111,7 @@ export class HangmanComponent implements OnInit {
     guessWord(): void {
         let word: string = this.guessGameWord.value.word;
         console.log(word);
-        if (word.length>0) {
+        if (word.length > 0) {
             word = word.toUpperCase();
             if (this.gameWord === word) {
                 this.endGame();
@@ -118,27 +119,27 @@ export class HangmanComponent implements OnInit {
                 this.madeMistake();
             }
         } else {
-            alert("Don't forget to choose a word");
+            alert('Don\'t forget to choose a word');
         }
     }
 
     madeMistake(): void {
         this.mistakes++;
-        console.log("Mistakes: " + this.mistakes);
+        console.log('Mistakes: ' + this.mistakes);
         if (this.mistakes >= 7) {
             this.endGame();
         }
-        //TODO: draw hangman
+        // TODO: draw hangman
     }
 
     endGame(): void {
         if (this.mistakes >= 7) {
-            console.log("YOU LOSE");
-            //TODO: lose game
+            console.log('YOU LOSE');
+            // TODO: lose game
             this.gameStats.addLoss();
         } else {
-            console.log("YOU WIN");
-            //TODO: win game
+            console.log('YOU WIN');
+            // TODO: win game
             this.gameStats.addWin();
         }
         console.log(this.gameStats);

@@ -25,6 +25,6 @@ export class HangmanStats {
     }
 
     public getWinPercentage(): number {
-        return this.getGamesPlayed() === 0 ? 0 : (this.wins/this.getGamesPlayed())*100;
+        return this.getGamesPlayed() === 0 ? 0 : (this.wins / this.getGamesPlayed()) * 100;
     }
 }

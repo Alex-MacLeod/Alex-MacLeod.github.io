@@ -35,7 +35,7 @@ import { HangmanComponent } from './portfolio/hangman/hangman.component';
 import { CommonService } from './app.service';
 import { ContactService } from './contact/contact.service';
 import { HangmanService } from './portfolio/hangman/hangman.service';
-import { WordListsService }  from './portfolio/hangman/wordlists.service';
+import { WordListsService } from './portfolio/hangman/wordlists.service';
 
 @NgModule({
   declarations: [

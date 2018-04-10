@@ -6,13 +6,12 @@ export class CommonService {
     constructor() { }
 
     timeoutPromise(promise: Promise<any>, timeoutLength: number): Promise<any> {
-        let timeout = new Promise((resolve, reject) => {
-            let wait = setTimeout(() => {
+        const timeout = new Promise((resolve, reject) => {
+            const wait = setTimeout(() => {
                 clearTimeout(wait);
-                reject('Timed out in '+ timeoutLength + 'ms.');
+                reject('Timed out in ' + timeoutLength + 'ms.');
             }, timeoutLength);
         });
-        
         return Promise.race([promise, timeout]);
     }
 

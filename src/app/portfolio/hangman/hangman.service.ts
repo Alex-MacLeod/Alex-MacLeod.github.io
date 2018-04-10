@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class HangmanService {
 
-    private wordListsUrl: string = "api/wordlists";  // URL to web api
+    private wordListsUrl = 'api/wordlists';  // URL to web api
 
     constructor(
         private http: HttpClient
