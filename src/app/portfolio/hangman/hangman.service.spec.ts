@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { HangmanService } from '../hangman.service';
+import { HangmanService } from './hangman.service';
+
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('HangmanService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HangmanService]
+      providers: [
+        HttpClient,
+        HttpHandler,
+        HangmanService
+      ]
     });
   });
 

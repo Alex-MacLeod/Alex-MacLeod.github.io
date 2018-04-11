@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ContactService } from '../contact.service';
+import { ContactService } from './contact.service';
 
-describe('HangmanService', () => {
+import { HttpClient, HttpHandler } from '@angular/common/http';
+
+describe('ContactService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ContactService]
+      providers: [
+        HttpClient,
+        HttpHandler,
+        ContactService
+      ]
     });
   });
 
