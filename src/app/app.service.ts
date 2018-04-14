@@ -9,7 +9,7 @@ export class CommonService {
         const timeout = new Promise((resolve, reject) => {
             const wait = setTimeout(() => {
                 clearTimeout(wait);
-                reject('Timed out in ' + timeoutLength + 'ms.');
+                reject('Timed out after ' + timeoutLength + 'ms.');
             }, timeoutLength);
         });
         return Promise.race([promise, timeout]);
