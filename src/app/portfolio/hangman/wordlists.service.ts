@@ -1,9 +1,4 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-
-export class WordListsService implements InMemoryDbService {
-  createDb() {
-    const wordlists = [
-                        {
+export const wordlists = [{
                             'theme': 'Anime',
                             'words': [
                                 'manga',
@@ -44,6 +39,3 @@ export class WordListsService implements InMemoryDbService {
                             ]
                         }
                     ];
-    return {wordlists};
-  }
-}

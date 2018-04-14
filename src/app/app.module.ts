@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -35,7 +34,6 @@ import { HangmanComponent } from './portfolio/hangman/hangman.component';
 import { CommonService } from './app.service';
 import { ContactService } from './contact/contact.service';
 import { HangmanService } from './portfolio/hangman/hangman.service';
-import { WordListsService } from './portfolio/hangman/wordlists.service';
 
 @NgModule({
   declarations: [
@@ -65,9 +63,6 @@ import { WordListsService } from './portfolio/hangman/wordlists.service';
     CarouselModule.forRoot(),
     PaginationModule.forRoot(),
     CollapseModule.forRoot(),
-    HttpClientInMemoryWebApiModule.forRoot(
-      WordListsService, { dataEncapsulation: false }
-    )
   ],
   providers: [
     CommonService,

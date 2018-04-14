@@ -31,13 +31,14 @@ export class HangmanComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.cs.timeoutPromise(this.hangmanService.getWordLists(), 500).then(wordLists => {
-            this.wordLists = wordLists;
-            console.log(this.wordLists);
-        }).catch((error) => {
-            console.error(`Word list load failed: ${error}`);
-            this.gameError = true;
-        });
+        // this.cs.timeoutPromise(this.hangmanService.getWordLists(), 500).then(wordLists => {
+        //     this.wordLists = wordLists;
+        //     console.log(this.wordLists);
+        // }).catch((error) => {
+        //     console.error(`Word list load failed: ${error}`);
+        //     this.gameError = true;
+        // });
+        this.wordLists = this.hangmanService.getWordLists();
         this.createForms();
         this.gameError = false;
     }
