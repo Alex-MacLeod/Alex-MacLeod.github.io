@@ -11,7 +11,6 @@ import { ContactService } from './contact.service';
     styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-    private message: Message;
     private contactForm: FormGroup;
     private submitted = false;
     private sent = false;
@@ -35,9 +34,8 @@ export class ContactComponent {
     }
 
     onSubmit(): void {
-        this.message = this.buildMessage();
-        delete this.message.honeypot;
-        this.cs.timeoutPromise(this.contactService.sendMessage(this.message), 1000).then((res) => {
+        const contactMessage: Message = this.buildMessage();
+        this.cs.timeoutPromise(this.contactService.sendMessage(contactMessage), 2000).then((res) => {
             this.sent = true;
             this.submitted = true;
         }).catch((error) => {
@@ -49,14 +47,13 @@ export class ContactComponent {
 
     buildMessage(): Message {
         const formModel: any = this.contactForm.value;
-        const preparedMessage: Message = {
-            sender: formModel.name as string,
-            subject: formModel.subject as string,
-            phone: formModel.phone as number,
-            email: formModel.email as string,
-            message: formModel.message as string,
-            honeypot: formModel.honeypot as string
-        };
-      return preparedMessage;
+        const message: Message = new Message();
+        message.setSender(formModel.name);
+        message.setSubject(formModel.subject);
+        message.setPhone(formModel.phone);
+        message.setEmail(formModel.email);
+        message.setMessage(formModel.message);
+        if ( !!formModel.honeypot ) { message.setHoneypot(formModel.honeypot); }
+      return message;
     }
 }
