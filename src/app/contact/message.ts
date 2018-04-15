@@ -27,7 +27,7 @@ export class Message {
     public getMessage(): string {
         return this.message;
     }
-    
+
     public getHoneypot(): string {
         return this.honeypot;
     }

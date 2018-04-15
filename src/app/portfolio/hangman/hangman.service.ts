@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {wordlists} from './wordlists.service'
+import {wordlists} from './wordlists.service';
 
 @Injectable()
 export class HangmanService {
