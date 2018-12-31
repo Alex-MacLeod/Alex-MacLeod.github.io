@@ -39,7 +39,7 @@ The promises used in this website have timeouts. This is thanks to a method in `
 
 [QA Consulting](https://www.qa.com/) taught me how to code as part of their [Graduate Training Program](https://consulting.qa.com/graduate-programme), during which I created many of the projects featured on this website, and during that course they gave me the idea to create this website in the first place.
 
-Much of my experience with [Angular 5](#angular), which this website uses as its framework, has been learnt while working at [Santander Technology](http://www.santandertechnology.co.uk/) (on behalf of [QA Consulting](https://www.qa.com/)). I also created the [React Calculator](https://github.com/AlexMacLeod23/React-Calculator) on their time.
+Much of my experience with [Angular 5](#angular), which this website uses as its framework, has been learnt while working at [Santander Technology](http://www.santandertechnology.co.uk/). I also created the [React Calculator](https://github.com/AlexMacLeod23/React-Calculator) on their time.
 
 ## Acknowledgments
 
