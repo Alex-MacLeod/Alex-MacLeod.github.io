@@ -11,7 +11,6 @@ import { SkillsComponent } from './career/skills/skills.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { PortfolioComponent } from './portfolio/portfolio.component';
-import { HangmanComponent } from './portfolio/hangman/hangman.component';
 
 import { InterestsComponent } from './interests/interests.component';
 
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'career/skills', component: SkillsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'portfolio', component: PortfolioComponent },
-  { path: 'portfolio/hangman', component: HangmanComponent },
   { path: 'interests', component: InterestsComponent },
 ];
 
