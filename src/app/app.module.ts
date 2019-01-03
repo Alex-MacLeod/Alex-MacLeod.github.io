@@ -21,12 +21,6 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 
 import { InterestsComponent } from './interests/interests.component';
-import { PhotographyComponent } from './interests/photography/photography.component';
-import { FantasyfootballComponent } from './interests/fantasyfootball/fantasyfootball.component';
-import { AnimeComponent } from './interests/anime/anime.component';
-import { StrategygamesComponent } from './interests/strategygames/strategygames.component';
-import { WalkingComponent } from './interests/walking/walking.component';
-import { PoliticsnewsComponent } from './interests/politicsnews/politicsnews.component';
 
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HangmanComponent } from './portfolio/hangman/hangman.component';
@@ -47,12 +41,6 @@ import { HangmanService } from './portfolio/hangman/hangman.service';
     SkillsComponent,
     HangmanComponent,
     InterestsComponent,
-    PhotographyComponent,
-    FantasyfootballComponent,
-    AnimeComponent,
-    StrategygamesComponent,
-    WalkingComponent,
-    PoliticsnewsComponent,
   ],
   imports: [
     BrowserModule,
