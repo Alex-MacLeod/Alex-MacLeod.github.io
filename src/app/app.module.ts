@@ -11,10 +11,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CareerComponent } from './career/career.component';
-import { EducationComponent } from './career/education/education.component';
-import { ExperienceComponent } from './career/experience/experience.component';
-import { SkillsComponent } from './career/skills/skills.component';
+import { AboutComponent } from './about/about.component';
+import { EducationComponent } from './about/education/education.component';
+import { ExperienceComponent } from './about/experience/experience.component';
+import { SkillsComponent } from './about/skills/skills.component';
 
 import { ContactComponent } from './contact/contact.component';
 
@@ -30,7 +30,7 @@ import { ContactService } from './contact/contact.service';
 @NgModule({
   declarations: [
     AppComponent,
-    CareerComponent,
+    AboutComponent,
     ContactComponent,
     PortfolioComponent,
     HomeComponent,
