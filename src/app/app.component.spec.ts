@@ -19,12 +19,6 @@ import { ContactComponent } from './contact/contact.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HangmanComponent } from './portfolio/hangman/hangman.component';
 import { InterestsComponent } from './interests/interests.component';
-import { AnimeComponent } from './interests/anime/anime.component';
-import { FantasyfootballComponent } from './interests/fantasyfootball/fantasyfootball.component';
-import { PhotographyComponent } from './interests/photography/photography.component';
-import { PoliticsnewsComponent } from './interests/politicsnews/politicsnews.component';
-import { StrategygamesComponent } from './interests/strategygames/strategygames.component';
-import { WalkingComponent } from './interests/walking/walking.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -40,12 +34,6 @@ describe('AppComponent', () => {
         SkillsComponent,
         HangmanComponent,
         InterestsComponent,
-        PhotographyComponent,
-        FantasyfootballComponent,
-        AnimeComponent,
-        StrategygamesComponent,
-        WalkingComponent,
-        PoliticsnewsComponent,
       ],
       imports: [
         AppRoutingModule,
