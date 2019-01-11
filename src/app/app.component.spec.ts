@@ -6,6 +6,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -38,7 +39,8 @@ describe('AppComponent', () => {
       imports: [
         AppRoutingModule,
         ReactiveFormsModule,
-        AlertModule.forRoot()
+        AlertModule.forRoot(),
+        CollapseModule.forRoot()
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     }).compileComponents();

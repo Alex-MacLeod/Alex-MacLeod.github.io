@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +43,7 @@ import { ContactService } from './contact/contact.service';
     ReactiveFormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers: [
     CommonService,
