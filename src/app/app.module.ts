@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
@@ -12,9 +11,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AboutComponent } from './about/about.component';
-import { EducationComponent } from './about/education/education.component';
-import { ExperienceComponent } from './about/experience/experience.component';
-import { SkillsComponent } from './about/skills/skills.component';
+import { EducationComponent } from './education/education.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { SkillsComponent } from './skills/skills.component';
 
 import { ContactComponent } from './contact/contact.component';
 
@@ -45,7 +44,6 @@ import { ContactService } from './contact/contact.service';
     ReactiveFormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
-    CarouselModule.forRoot(),
     PaginationModule.forRoot(),
     CollapseModule.forRoot(),
   ],

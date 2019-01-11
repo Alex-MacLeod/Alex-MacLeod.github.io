@@ -10,10 +10,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      imports: [
-        CarouselModule.forRoot()
-      ],
+      declarations: [ HomeComponent ]
     })
     .compileComponents();
   }));
