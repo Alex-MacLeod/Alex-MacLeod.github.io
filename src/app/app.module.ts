@@ -4,8 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,8 +42,6 @@ import { ContactService } from './contact/contact.service';
     ReactiveFormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
-    PaginationModule.forRoot(),
-    CollapseModule.forRoot(),
   ],
   providers: [
     CommonService,
